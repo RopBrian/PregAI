@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PregAI Frontend Design Directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17201c;
+      --muted: #6d756f;
+      --paper: #f6f0e6;
+      --line: rgba(23, 32, 28, .14);
+      --rose: #b85664;
+      --moss: #496b57;
+      --clay: #c77755;
+      --blue: #23445d;
+      --cream: #fffaf0;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #111815;
+      color: var(--ink);
+      font-family: "Instrument Sans", sans-serif;
+    }
+    button, input, select { font: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 28px;
+      color: #f8f1e8;
+      background: rgba(17, 24, 21, .88);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(18px);
+    }
+    .topbar h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(22px, 2vw, 34px);
+      letter-spacing: 0;
+    }
+    .topbar p { margin: 4px 0 0; color: rgba(248,241,232,.72); }
+    .jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .jump a {
+      color: #f8f1e8;
+      text-decoration: none;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .intro {
+      padding: 42px 28px 20px;
+      background: #111815;
+      color: #f8f1e8;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 28px;
+      align-items: end;
+    }
+    .intro h2 {
+      margin: 0;
+      max-width: 980px;
+      font-family: "Newsreader", serif;
+      font-size: clamp(38px, 7vw, 94px);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+    .intro p {
+      max-width: 620px;
+      color: rgba(248,241,232,.78);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .note {
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 6px;
+      background: rgba(255,255,255,.06);
+      color: rgba(248,241,232,.82);
+      line-height: 1.55;
+    }
+    .direction {
+      min-height: 100vh;
+      padding: 28px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .direction-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
+      color: #fff9ef;
+    }
+    .direction-head h2 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(31px, 4vw, 58px);
+      line-height: 1;
+    }
+    .direction-head p {
+      margin: 8px 0 0;
+      max-width: 820px;
+      color: rgba(255,249,239,.76);
+      line-height: 1.55;
+    }
+    .score {
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: rgba(255,249,239,.82);
+      min-width: 160px;
+      text-align: right;
+    }
+    .score strong {
+      display: block;
+      color: #fff9ef;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .browser {
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 32px 90px rgba(0,0,0,.32);
+      background: #fff;
+    }
+    .chrome {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      background: #1b211f;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #d66; }
+    .dot:nth-child(2) { background: #ddb357; }
+    .dot:nth-child(3) { background: #6cc07a; }
+    .url {
+      margin-left: 8px;
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+    }
+    .mock { min-height: 720px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: default;
+    }
+    .quiet-btn {
+      border: 1px solid currentColor;
+      background: transparent;
+      color: inherit;
+    }
+    .component-strip {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(80px, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+      color: rgba(255,249,239,.8);
+      font-size: 12px;
+    }
+    .component-strip span {
+      border: 1px solid rgba(255,255,255,.16);
+      padding: 9px 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Direction 1 */
+    #d1 { background: #19231d; }
+    .clinic {
+      background: #f8f1e8;
+      font-family: "Instrument Sans", sans-serif;
+    }
+    .clinic-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 34px;
+      border-bottom: 1px solid rgba(25,35,29,.12);
+    }
+    .brand {
+      font-family: "Fraunces", serif;
+      font-weight: 700;
+      font-size: 28px;
+    }
+    .clinic-nav .links { display: flex; gap: 20px; color: #59635d; }
+    .clinic-hero {
+      display: grid;
+      grid-template-columns: 1.03fr .97fr;
+      min-height: 520px;
+    }
+    .clinic-copy {
+      padding: 66px 34px 34px 54px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .clinic-copy h3 {
+      margin: 14px 0 18px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(44px, 5vw, 78px);
+      line-height: .95;
+    }
+    .clinic-copy p {
+      max-width: 600px;
+      color: #526057;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .clinic-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .clinic .btn:first-child { background: #2f5a43; color: white; }
+    .clinic-photo {
+      position: relative;
+      min-height: 520px;
+      background: url("https://unsplash.com/photos/3Bmkmlk35l4/download?force=true&w=1400") center/cover;
+    }
+    .scan-note {
+      position: absolute;
+      left: -70px;
+      bottom: 36px;
+      width: 260px;
+      background: rgba(255,250,240,.94);
+      border: 1px solid rgba(25,35,29,.12);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 18px 48px rgba(25,35,29,.18);
+    }
+    .clinic-app {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      border-top: 1px solid rgba(25,35,29,.12);
+    }
+    .clinic-side {
+      padding: 24px;
+      background: #e9ded1;
+      min-height: 310px;
+    }
+    .navline {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(25,35,29,.12);
+      color: #39483e;
+    }
+    .clinic-work {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 26px;
+      padding: 28px;
+    }
+    .chat-panel {
+      border-left: 3px solid #2f5a43;
+      padding-left: 22px;
+    }
+    .bubble {
+      max-width: 620px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(25,35,29,.1);
+      line-height: 1.55;
+    }
+    .bubble strong { color: #2f5a43; }
+    .report-sheet {
+      background: #fffaf0;
+      border: 1px solid rgba(25,35,29,.12);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    /* Direction 2 */
+    #d2 { background: #241b1d; }
+    .journal {
+      background: #f4eadb;
+      color: #241b1d;
+      font-family: "Source Serif 4", serif;
+    }
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      min-height: 720px;
+    }
+    .journal-left { padding: 36px; }
+    .journal-kicker {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      font-family: "Instrument Sans", sans-serif;
+      border-bottom: 1px solid rgba(36,27,29,.22);
+      padding-bottom: 18px;
+    }
+    .journal h3 {
+      margin: 40px 0 22px;
+      font-family: "Newsreader", serif;
+      font-size: clamp(54px, 7vw, 108px);
+      line-height: .86;
+    }
+    .journal-lede {
+      max-width: 720px;
+      font-size: 23px;
+      line-height: 1.45;
+      color: #594749;
+    }
+    .journal-actions { display: flex; gap: 12px; margin: 28px 0; font-family: "Instrument Sans", sans-serif; }
+    .journal .btn:first-child { background: #9d4652; color: white; }
+    .journal-photo {
+      min-height: 720px;
+      background: linear-gradient(rgba(36,27,29,.05), rgba(36,27,29,.38)), url("https://unsplash.com/photos/VtMd8w82ktQ/download?force=true&w=1400") center/cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+    }
+    .journal-caption {
+      color: white;
+      max-width: 380px;
+      font-family: "Instrument Sans", sans-serif;
+      line-height: 1.45;
+    }
+    .journal-lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid rgba(36,27,29,.18);
+      margin-top: 36px;
+    }
+    .journal-lower > div {
+      padding: 18px;
+      min-height: 145px;
+      border-right: 1px solid rgba(36,27,29,.18);
+    }
+    .journal-lower h4 { margin: 0 0 10px; font-family: "Instrument Sans", sans-serif; }
+    .journal-lower p { margin: 0; color: #6b5558; line-height: 1.45; }
+
+    /* Direction 3 */
+    #d3 { background: #111b23; }
+    .command {
+      background: #eff4f4;
+      color: #13232c;
+      font-family: "Space Grotesk", sans-serif;
+    }
+    .command-shell {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      min-height: 720px;
+    }
+    .rail {
+      background: #13232c;
+      color: white;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .rail span {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.18);
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+    .command-main { padding: 26px; }
+    .command-hero {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .command-title {
+      border: 1px solid rgba(19,35,44,.14);
+      background: #fbfdfc;
+      padding: 28px;
+      border-radius: 8px;
+    }
+    .command-title h3 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(40px, 5vw, 78px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+    .command-title p { color: #53656f; line-height: 1.55; max-width: 620px; }
+    .doctor-photo {
+      min-height: 290px;
+      border-radius: 8px;
+      background: url("https://unsplash.com/photos/VI88uaGaCXU/download?force=true&w=1000") center/cover;
+    }
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .log-table, .analysis-board {
+      border: 1px solid rgba(19,35,44,.14);
+      background: #fbfdfc;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .command-row {
+      display: grid;
+      grid-template-columns: 90px 110px 1fr;
+      gap: 12px;
+      padding: 13px 16px;
+      border-bottom: 1px solid rgba(19,35,44,.1);
+      font-size: 14px;
+    }
+    .analysis-board { padding: 18px; }
+    .meter {
+      height: 12px;
+      background: #dce7e6;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 18px;
+    }
+    .meter span { display: block; height: 100%; background: #2f6973; }
+
+    /* Direction 4 */
+    #d4 { background: #1c241e; }
+    .homecare {
+      background: #fff8ed;
+      font-family: "Instrument Sans", sans-serif;
+      color: #243126;
+    }
+    .home-shell {
+      display: grid;
+      grid-template-columns: minmax(300px, 440px) 1fr;
+      min-height: 720px;
+    }
+    .home-photo {
+      background: linear-gradient(rgba(36,49,38,.1), rgba(36,49,38,.45)), url("https://unsplash.com/photos/5Q3DOB4KJgk/download?force=true&w=1200") center/cover;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+    }
+    .home-photo h3 {
+      font-family: "DM Serif Display", serif;
+      font-size: 54px;
+      line-height: .98;
+      margin: 0;
+      max-width: 360px;
+    }
+    .home-ui { padding: 28px; }
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(36,49,38,.12);
+      padding-bottom: 18px;
+    }
+    .home-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 24px;
+    }
+    .soft-section {
+      border-top: 1px solid rgba(36,49,38,.16);
+      padding-top: 18px;
+      min-height: 220px;
+    }
+    .soft-section h4 {
+      font-family: "DM Serif Display", serif;
+      font-size: 30px;
+      margin: 0 0 12px;
+    }
+    .human-msg {
+      background: #f1e5d5;
+      border-radius: 18px 18px 18px 4px;
+      padding: 15px;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .home-input {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid rgba(36,49,38,.18);
+      border-radius: 999px;
+      background: white;
+    }
+    .home-input span { flex: 1; color: #7b817d; padding: 10px; }
+    .homecare .btn:first-child { background: #c15f4a; color: #fff; }
+
+    /* Direction 5 */
+    #d5 { background: #171719; }
+    .atelier {
+      background: #171719;
+      color: #f7eee4;
+      font-family: "Space Grotesk", sans-serif;
+    }
+    .atelier-hero {
+      min-height: 720px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+    }
+    .atelier-main {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+    }
+    .atelier h3 {
+      margin: 34px 0 18px;
+      max-width: 850px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(52px, 7vw, 112px);
+      line-height: .86;
+    }
+    .atelier p { color: rgba(247,238,228,.72); line-height: 1.6; max-width: 660px; }
+    .atelier .btn:first-child { background: #e0aa72; color: #171719; }
+    .filmstrip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .film {
+      min-height: 130px;
+      border: 1px solid rgba(247,238,228,.18);
+      background: #222;
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .film:nth-child(1) { background: url("https://unsplash.com/photos/okEzax1p2GI/download?force=true&w=700") center/cover; }
+    .film:nth-child(2) { background: #222b2c; }
+    .film:nth-child(3) { background: #2a211f; }
+    .film:nth-child(4) { background: #1f2a23; }
+    .atelier-side {
+      background: url("https://unsplash.com/photos/QCjHeFSAqr0/download?force=true&w=900") center/cover;
+      position: relative;
+    }
+    .atelier-side:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(23,23,25,.85));
+    }
+    .atelier-card {
+      position: absolute;
+      z-index: 2;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      border: 1px solid rgba(247,238,228,.24);
+      background: rgba(23,23,25,.68);
+      backdrop-filter: blur(16px);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .atelier-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .atelier-grid div {
+      border-top: 1px solid rgba(247,238,228,.2);
+      padding-top: 12px;
+      color: rgba(247,238,228,.72);
+    }
+
+    .design-notes {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      color: rgba(255,249,239,.82);
+    }
+    .design-notes div {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 6px;
+      padding: 14px;
+      line-height: 1.45;
+      background: rgba(255,255,255,.04);
+    }
+    .design-notes strong {
+      display: block;
+      color: #fff9ef;
+      margin-bottom: 6px;
+    }
+    .sources {
+      padding: 34px 28px 56px;
+      background: #111815;
+      color: rgba(248,241,232,.78);
+      line-height: 1.7;
+    }
+    .sources h2 {
+      color: #fff9ef;
+      font-family: "Fraunces", serif;
+      margin: 0 0 10px;
+    }
+    .sources a { color: #f3c98b; }
+
+    @media (max-width: 920px) {
+      .intro,
+      .direction-head,
+      .clinic-hero,
+      .clinic-app,
+      .clinic-work,
+      .journal-grid,
+      .command-hero,
+      .monitor-grid,
+      .home-shell,
+      .home-panels,
+      .atelier-hero,
+      .design-notes {
+        grid-template-columns: 1fr;
+      }
+      .component-strip { grid-template-columns: repeat(2, 1fr); }
+      .score { text-align: left; }
+      .scan-note { left: 20px; right: 20px; width: auto; }
+      .atelier-side { min-height: 440px; }
+      .journal-photo { min-height: 460px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>PregAI Frontend Design Directions</h1>
+      <p>Standalone browser preview. No React app code changed.</p>
+    </div>
+    <nav class="jump" aria-label="Design directions">
+      <a href="#d1">Clinic Companion</a>
+      <a href="#d2">Maternal Journal</a>
+      <a href="#d3">Clinical Command</a>
+      <a href="#d4">Home Care</a>
+      <a href="#d5">Diagnostic Atelier</a>
+    </nav>
+  </header>
+
+  <section class="intro">
+    <div>
+      <h2>Five complete visual languages for PregAI.</h2>
+      <p>Each direction keeps the current product surfaces: landing, auth, terms, header, sidebar, chat and scan upload, education, scan history and report, profile and privacy, admin dashboard, and system logs.</p>
+    </div>
+    <div class="note">
+      Intent: fewer floating cards, more real human presence, more editorial composition, and copy that sounds like a caring product rather than a machine. The previews use browser-frame mockups so you can compare how each design would feel in use.
+    </div>
+  </section>
+
+  <section class="direction" id="d1">
+    <div class="direction-head">
+      <div>
+        <h2>1. Warm Clinic Companion</h2>
+        <p>A calm private-care interface: grounded greens, paper texture, real maternity photography, and a clinical report area that feels reviewed rather than generated.</p>
+      </div>
+      <div class="score"><strong>DFII 14</strong>Best fit for launch</div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/private-screening</span></div>
+      <div class="mock clinic">
+        <nav class="clinic-nav">
+          <div class="brand">PregAI</div>
+          <div class="links"><span>How it helps</span><span>Learning room</span><span>Support</span></div>
+          <button class="btn quiet-btn">Sign in</button>
+        </nav>
+        <section class="clinic-hero">
+          <div class="clinic-copy">
+            <div>
+              <span class="pill">Private fetal brain screening</span>
+              <h3>Clear answers, gently explained.</h3>
+              <p>Upload an ultrasound, ask what the result means, and keep your pregnancy learning in one quiet place. PregAI explains patterns in plain language and reminds you when a clinician should review them.</p>
+              <div class="clinic-actions">
+                <button class="btn">Check my scan privately</button>
+                <button class="btn quiet-btn">See what happens after upload</button>
+              </div>
+            </div>
+            <p><strong>Message tone:</strong> "I can help you understand this result. It is not a diagnosis, but it is worth bringing to your next appointment."</p>
+          </div>
+          <div class="clinic-photo">
+            <div class="scan-note">
+              <strong>Today in PregAI</strong>
+              <p>1 scan uploaded. AI heatmap ready. Report saved to your scan history.</p>
+            </div>
+          </div>
+        </section>
+        <section class="clinic-app">
+          <aside class="clinic-side">
+            <div class="navline"><span>Ask PregAI</span><strong>open</strong></div>
+            <div class="navline"><span>My scans</span><strong>3</strong></div>
+            <div class="navline"><span>Learning room</span><strong>new</strong></div>
+            <div class="navline"><span>Privacy settings</span><strong></strong></div>
+          </aside>
+          <main class="clinic-work">
+            <div class="chat-panel">
+              <div class="bubble"><strong>You:</strong> What does "normal pattern" mean in my report?</div>
+              <div class="bubble"><strong>PregAI:</strong> It means the scan matched the healthy-development examples the model was trained on. I would still share it with your provider, especially if you have symptoms or worries.</div>
+              <div class="home-input"><span>Ask about your report or upload a scan</span><button class="btn">Send</button></div>
+            </div>
+            <div class="report-sheet">
+              <span class="pill">Scan report</span>
+              <h3>Normal pattern</h3>
+              <p>Confidence 96 percent. Heatmap available. Saved May 2, 2026.</p>
+              <button class="btn">Open full report</button>
+            </div>
+          </main>
+        </section>
+      </div>
+    </div>
+    <div class="component-strip"><span>Landing</span><span>Auth</span><span>Chat</span><span>Scans</span><span>Education</span><span>Profile</span><span>Admin</span></div>
+    <div class="design-notes">
+      <div><strong>Assets</strong> Warm maternity portraits, real ultrasound-in-hand photos, subtle paper grain.</div>
+      <div><strong>Buttons</strong> "Check my scan privately", "Open full report", "Ask about this result".</div>
+      <div><strong>Layout</strong> Human image first, then app shell. Report reads like a clinic letter.</div>
+      <div><strong>Avoids generic UI</strong> Uses patient-care editorial layout instead of glassy AI panels.</div>
+    </div>
+  </section>
+
+  <section class="direction" id="d2">
+    <div class="direction-head">
+      <div>
+        <h2>2. Maternal Journal</h2>
+        <p>A magazine-like pregnancy companion: big expressive type, article rhythm, scan history as a memory timeline, and education as readable chapters.</p>
+      </div>
+      <div class="score"><strong>DFII 13</strong>Most emotional</div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/journey</span></div>
+      <div class="mock journal">
+        <div class="journal-grid">
+          <div class="journal-left">
+            <div class="journal-kicker"><strong>PregAI</strong><span>FAQ &nbsp; Learning &nbsp; Support</span></div>
+            <h3>Your pregnancy record, in words you can live with.</h3>
+            <p class="journal-lede">PregAI turns scan analysis, chatbot guidance, and pregnancy education into a calm weekly record. Less dashboard. More trusted notebook.</p>
+            <div class="journal-actions">
+              <button class="btn">Begin my private record</button>
+              <button class="btn quiet-btn">Read a sample report</button>
+            </div>
+            <div class="journal-lower">
+              <div><h4>Ask</h4><p>"Can you explain this without scaring me?" PregAI answers gently and clearly.</p></div>
+              <div><h4>Save</h4><p>Every scan becomes a dated entry with image, heatmap, and next step.</p></div>
+              <div><h4>Learn</h4><p>Trimester content opens like chapters, not dense cards.</p></div>
+            </div>
+          </div>
+          <div class="journal-photo">
+            <div class="journal-caption">Human photography is not decorative here. It anchors the product in anticipation, family, and real care.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="component-strip"><span>Landing</span><span>Auth</span><span>Chat</span><span>Scans</span><span>Education</span><span>Profile</span><span>Admin</span></div>
+    <div class="design-notes">
+      <div><strong>Assets</strong> Editorial pregnancy portraits, sonogram details, chapter-style article imagery.</div>
+      <div><strong>Buttons</strong> "Begin my private record", "Keep this scan", "Explain this gently".</div>
+      <div><strong>Layout</strong> Landing and education become magazine spreads; scan history becomes a vertical journal.</div>
+      <div><strong>Avoids generic UI</strong> Replaces SaaS grids with a readable maternity record system.</div>
+    </div>
+  </section>
+
+  <section class="direction" id="d3">
+    <div class="direction-head">
+      <div>
+        <h2>3. Clinical Command</h2>
+        <p>A precise medical-operations interface. Best if PregAI must feel serious, auditable, and admin-ready while still supporting mothers with clear language.</p>
+      </div>
+      <div class="score"><strong>DFII 12</strong>Best for admin trust</div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/system-overview</span></div>
+      <div class="mock command">
+        <div class="command-shell">
+          <aside class="rail"><span>P</span><span>AI</span><span>SC</span><span>LG</span><span>ME</span></aside>
+          <main class="command-main">
+            <section class="command-hero">
+              <div class="command-title">
+                <span class="pill">Clinically responsible AI support</span>
+                <h3>Every scan, message, and system event has a place.</h3>
+                <p>For mothers, the tone remains human. For admins, the audit trail is obvious: uploads, safety alerts, ML results, chat sessions, and exports are structured without hiding risk.</p>
+                <div class="clinic-actions"><button class="btn">Review today's scans</button><button class="btn quiet-btn">Open safety logs</button></div>
+              </div>
+              <div class="doctor-photo"></div>
+            </section>
+            <section class="monitor-grid">
+              <div class="log-table">
+                <div class="command-row"><strong>Level</strong><strong>Module</strong><strong>Activity</strong></div>
+                <div class="command-row"><span>INFO</span><span>CHAT</span><span>Mother asked about fetal brain landmarks</span></div>
+                <div class="command-row"><span>ML</span><span>SCAN</span><span>Heatmap generated and report saved</span></div>
+                <div class="command-row"><span>WARN</span><span>SAFETY</span><span>User reminded to seek clinician review</span></div>
+              </div>
+              <div class="analysis-board">
+                <span class="pill">Scan analysis</span>
+                <h3>Model confidence</h3>
+                <div class="meter"><span style="width: 92%"></span></div>
+                <p><strong>Human copy:</strong> "This result can help guide your questions. Your provider is still the right person to make medical decisions."</p>
+                <button class="btn">Export report</button>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+    <div class="component-strip"><span>Landing</span><span>Auth</span><span>Chat</span><span>Scans</span><span>Education</span><span>Profile</span><span>Admin</span></div>
+    <div class="design-notes">
+      <div><strong>Assets</strong> Real clinic photography, clinician-patient imagery, restrained data visualizations.</div>
+      <div><strong>Buttons</strong> "Review today's scans", "Open safety logs", "Download audit trail".</div>
+      <div><strong>Layout</strong> Rail navigation, dense admin tables, mother chat kept simple and readable.</div>
+      <div><strong>Avoids generic UI</strong> Medical audit language drives the design instead of AI chatbot decoration.</div>
+    </div>
+  </section>
+
+  <section class="direction" id="d4">
+    <div class="direction-head">
+      <div>
+        <h2>4. Home Care Companion</h2>
+        <p>A mobile-first, mother-first product. It feels like care at home: reassuring, touch-friendly, and direct, while still carrying scan reports and privacy controls.</p>
+      </div>
+      <div class="score"><strong>DFII 13</strong>Most approachable</div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/ask</span></div>
+      <div class="mock homecare">
+        <div class="home-shell">
+          <aside class="home-photo">
+            <div class="brand">PregAI</div>
+            <h3>Care should sound like a person.</h3>
+            <p>No cold labels. No panic language. Just clear next steps.</p>
+          </aside>
+          <main class="home-ui">
+            <div class="phone-top">
+              <strong>Hello, Amina</strong>
+              <button class="btn quiet-btn">Privacy</button>
+            </div>
+            <div class="home-panels">
+              <section class="soft-section">
+                <span class="pill">Chat</span>
+                <h4>Ask about your scan</h4>
+                <div class="human-msg">I see why this wording could feel worrying. Let us slow it down together.</div>
+                <div class="human-msg">This is a screening result, not a diagnosis. The safest next step is to share it with your clinician.</div>
+                <div class="home-input"><span>Type your question</span><button class="btn">Ask</button></div>
+              </section>
+              <section class="soft-section">
+                <span class="pill">My scans</span>
+                <h4>Latest report</h4>
+                <p>Normal pattern. 96 percent confidence. Heatmap saved.</p>
+                <button class="btn">Read my report</button>
+              </section>
+              <section class="soft-section">
+                <span class="pill">Learning</span>
+                <h4>This week</h4>
+                <p>Brain landmarks, hydration, and when to call your provider.</p>
+                <button class="btn quiet-btn">Open learning room</button>
+              </section>
+              <section class="soft-section">
+                <span class="pill">Account</span>
+                <h4>Your data</h4>
+                <p>Download or delete your scans, chat history, and reports whenever you need.</p>
+                <button class="btn quiet-btn">Manage my data</button>
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <div class="component-strip"><span>Landing</span><span>Auth</span><span>Chat</span><span>Scans</span><span>Education</span><span>Profile</span><span>Admin</span></div>
+    <div class="design-notes">
+      <div><strong>Assets</strong> Home pregnancy portraits, warm daylight, real hands holding sonograms.</div>
+      <div><strong>Buttons</strong> "Ask", "Read my report", "Manage my data", "Keep my account".</div>
+      <div><strong>Layout</strong> Large touch targets, bottom-nav-ready structure, low cognitive load.</div>
+      <div><strong>Avoids generic UI</strong> Uses personal care language instead of technical command labels.</div>
+    </div>
+  </section>
+
+  <section class="direction" id="d5">
+    <div class="direction-head">
+      <div>
+        <h2>5. Diagnostic Atelier</h2>
+        <p>A premium, high-contrast design for making AI analysis feel serious and memorable. Best for a polished demo, investor presentation, or advanced product identity.</p>
+      </div>
+      <div class="score"><strong>DFII 11</strong>Most distinctive</div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/analysis-studio</span></div>
+      <div class="mock atelier">
+        <div class="atelier-hero">
+          <main class="atelier-main">
+            <div>
+              <div class="brand">PregAI</div>
+              <h3>Private ultrasound intelligence, shown with care.</h3>
+              <p>A darker, gallery-like experience where scans, heatmaps, chat explanations, and admin logs feel like part of one carefully controlled diagnostic studio.</p>
+              <div class="clinic-actions"><button class="btn">Start a private review</button><button class="btn quiet-btn">View sample heatmap</button></div>
+            </div>
+            <div>
+              <div class="filmstrip">
+                <div class="film"></div>
+                <div class="film"><strong>Chat</strong><p>Explain this result without medical jargon.</p></div>
+                <div class="film"><strong>Report</strong><p>Confidence, heatmap, disclaimer, next step.</p></div>
+                <div class="film"><strong>Logs</strong><p>Admin events, exports, safety markers.</p></div>
+              </div>
+              <div class="atelier-grid">
+                <div><strong>Auth</strong><br>Minimal, serious, privacy-led.</div>
+                <div><strong>Education</strong><br>Short clinical notes, expandable.</div>
+                <div><strong>Profile</strong><br>Data controls given visual weight.</div>
+              </div>
+            </div>
+          </main>
+          <aside class="atelier-side">
+            <div class="atelier-card">
+              <span class="pill">Human label</span>
+              <h3>Saved safely</h3>
+              <p>Your scan and report are in your history. You can delete them at any time.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <div class="component-strip"><span>Landing</span><span>Auth</span><span>Chat</span><span>Scans</span><span>Education</span><span>Profile</span><span>Admin</span></div>
+    <div class="design-notes">
+      <div><strong>Assets</strong> Dramatic human portraits, ultrasound film strips, monochrome heatmap treatments.</div>
+      <div><strong>Buttons</strong> "Start a private review", "View sample heatmap", "Delete my data".</div>
+      <div><strong>Layout</strong> Studio grid, cinematic contrast, report and logs as controlled artifacts.</div>
+      <div><strong>Avoids generic UI</strong> Uses diagnostic gallery language instead of cheerful health-app tropes.</div>
+    </div>
+  </section>
+
+  <section class="sources">
+    <h2>Photo Sources</h2>
+    <p>Preview photography is referenced from Unsplash free photo pages where available: Brooke Balentine's maternity ultrasound photos, Emma's ultrasound pregnancy photo, and related pregnancy-care imagery. Some clinic-oriented imagery may require replacement with licensed local assets before production. Recommended production asset set: 8 to 12 real PregAI-safe human photos, 4 anonymized ultrasound/heatmap samples, and 2 clinician-care photos with explicit rights.</p>
+    <p>
+      Source references:
+      <a href="https://unsplash.com/photos/a-pregnant-woman-proudly-shows-her-ultrasound-scans-3Bmkmlk35l4">Unsplash 3Bmkmlk35l4</a>,
+      <a href="https://unsplash.com/photos/pregnant-woman-holds-ultrasound-pictures-of-her-baby-VtMd8w82ktQ">Unsplash VtMd8w82ktQ</a>,
+      <a href="https://unsplash.com/photos/pregnant-woman-is-happily-showing-off-her-ultrasound-5Q3DOB4KJgk">Unsplash 5Q3DOB4KJgk</a>,
+      <a href="https://unsplash.com/photos/pregnant-woman-holding-ultrasound-photos-okEzax1p2GI">Unsplash okEzax1p2GI</a>.
+    </p>
+  </section>
+</body>
+</html>

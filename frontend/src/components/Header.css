@@ -1,0 +1,8 @@
+
+@media (max-width: 1024px) {
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

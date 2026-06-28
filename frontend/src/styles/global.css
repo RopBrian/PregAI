@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Source+Sans+3:wght@400;500;600;700;800&display=swap");
+
+/* Global.css - Clinical Calm design tokens */
+:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --primary: #b86b73;
+  --primary-light: #f1d4d0;
+  --primary-dark: #4a263d;
+  --background: #fbf7f1;
+  --surface: #fffdf9;
+  --surface-soft: #f5ece3;
+  --text-main: #2f2d2a;
+  --text-muted: #6f6861;
+  --glass-border: #e7ddd2;
+  --radius-lg: 14px;
+}
+
+:root[data-theme="dark"] {
+  --primary: #dfa0a6;
+  --primary-light: #4c353b;
+  --primary-dark: #f6e8df;
+  --background: #171514;
+  --surface: #211e1c;
+  --surface-soft: #2d2825;
+  --text-main: #f5eee8;
+  --text-muted: #cbbfb3;
+  --glass-border: #3b342f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+
+/* Custom Scrollbar Baseline */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

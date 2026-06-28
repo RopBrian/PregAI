@@ -1,0 +1,191 @@
+.education-view {
+  padding: 16px; /* Mobile Default */
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .education-view {
+    padding: 32px;
+    height: 100%; /* In layout */
+    max-width: 1100px;
+  }
+}
+
+.edu-hero {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  margin-bottom: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .edu-hero {
+    padding: 40px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.edu-hero h2 {
+  font-size: clamp(1.6rem, 5vw, 2.22rem);
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.edu-hero p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .edu-hero p {
+    font-size: 1.1rem;
+  }
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .edu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+  }
+}
+
+.edu-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid var(--glass-border);
+  padding-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 1.6rem;
+}
+
+.card-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+@media (min-width: 768px) {
+  .card-header h3 {
+    font-size: 1.4rem;
+  }
+}
+
+.edu-item {
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  background: var(--button-bg-light);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.edu-item:hover {
+  background: var(--card-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-light);
+}
+
+.edu-item.active {
+  border-color: var(--primary);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.edu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  color: var(--primary-dark);
+}
+
+.edu-item-header h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.edu-desc {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.edu-details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--glass-border);
+}
+
+.edu-details p {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Clinical Calm refinements */
+.education-view {
+  max-width: 1180px;
+}
+
+.edu-hero {
+  text-align: left;
+  border-left: 4px solid #d8e6df;
+  border-radius: 14px;
+}
+
+.edu-hero h2 {
+  font-family: var(--font-display);
+  font-weight: 650;
+}
+
+.edu-card {
+  border-radius: 14px;
+}
+
+.card-header {
+  align-items: flex-start;
+}
+
+.edu-item {
+  border-radius: 10px;
+  background: #faf5ef;
+}
+
+:root[data-theme="dark"] .edu-item {
+  background: var(--button-bg-light);
+}
+
+.edu-item:hover {
+  transform: translateY(-2px);
+}
+
+.edu-item.active {
+  border-color: #47786f;
+  box-shadow: 0 12px 28px rgba(71, 120, 111, 0.12);
+}

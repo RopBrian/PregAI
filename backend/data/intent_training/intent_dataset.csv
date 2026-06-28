@@ -1,0 +1,141 @@
+text,intent_label
+I'm having chest pain.,emergency_query
+When does the cerebral cortex form?,brain_development
+Explain the head circumference measurement.,ml_result_explanation
+Emergency assistance needed.,emergency_query
+What should I do about this abnormality?,medical_advice_request
+What should I avoid eating?,general_pregnancy_education
+Can you help me upload an image?,image_upload_help
+What are the milestones of brain development?,brain_development
+My baby isn't moving.,emergency_query
+I think I'm in labor.,emergency_query
+I'm leaking fluid.,emergency_query
+Is there a cure for what was found?,medical_advice_request
+What happens to the brain in the second trimester?,brain_development
+Benefits of walking during pregnancy.,general_pregnancy_education
+Who made you?,small_talk
+When does the baby start dreaming?,brain_development
+How to stay healthy while pregnant?,general_pregnancy_education
+What does 82% confidence mean?,ml_result_explanation
+Goodbye,small_talk
+Severe headache and blurred vision.,emergency_query
+Can you break down the result for me?,ml_result_explanation
+I can't stop vomiting.,emergency_query
+How does the fetal brain develop?,brain_development
+Can I eat sushi during pregnancy?,general_pregnancy_education
+What's your name?,small_talk
+Explain the Grad-CAM heatmap.,ml_result_explanation
+Who are you?,small_talk
+How to delete an uploaded image.,image_upload_help
+How to manage morning sickness?,general_pregnancy_education
+Yoga for pregnant women.,general_pregnancy_education
+Tell me about pregnancy nutrition.,general_pregnancy_education
+"I fell down, what should I do?",emergency_query
+I'm having severe pain.,emergency_query
+The upload is taking too long.,image_upload_help
+How do I fix this problem?,medical_advice_request
+Do I need to see a specialist?,medical_advice_request
+What format should my image be?,image_upload_help
+Tell me about yourself.,small_talk
+How does the neural tube develop?,brain_development
+What foods should I eat during pregnancy?,general_pregnancy_education
+Should I take medication for this?,medical_advice_request
+Why did my scan show this result?,ml_result_explanation
+Should I be worried about this?,medical_advice_request
+Help me understand this prediction.,ml_result_explanation
+How to take a good picture of my scan.,image_upload_help
+Appreciate it,small_talk
+Sharp pain in my stomach.,emergency_query
+When do brain structures form?,brain_development
+Is my baby at risk?,medical_advice_request
+Sleeping positions during pregnancy.,general_pregnancy_education
+Image upload not working.,image_upload_help
+Explain the findings.,ml_result_explanation
+Why did the model classify this as abnormal?,ml_result_explanation
+I'm having contractions.,emergency_query
+What supports healthy brain development?,brain_development
+"I'm bleeding heavily, help!",emergency_query
+What are the risks?,medical_advice_request
+Interpret my brain scan.,ml_result_explanation
+How to submit my scan?,image_upload_help
+Neural migration in fetuses.,brain_development
+Should I take prenatal vitamins?,general_pregnancy_education
+Is the heatmap showing the brain structure?,ml_result_explanation
+Fetal brain anatomy overview.,brain_development
+What is the model detecting in my scan?,ml_result_explanation
+How do I add my ultrasound picture?,image_upload_help
+What are the stages of brain development?,brain_development
+How does the brain grow during pregnancy?,brain_development
+I need assistance,small_talk
+Give me medical advice on this scan.,medical_advice_request
+What are good sources of folic acid?,general_pregnancy_education
+How do I upload my ultrasound?,image_upload_help
+Upload instructions.,image_upload_help
+Should I get a second opinion?,medical_advice_request
+What does normal classification imply?,ml_result_explanation
+Why is this part highlighted in red?,ml_result_explanation
+Maximum file size for uploads.,image_upload_help
+Is caffeine safe during pregnancy?,general_pregnancy_education
+Should I go to the hospital?,medical_advice_request
+When can the baby start hearing?,brain_development
+I need help uploading.,image_upload_help
+I have a fever and chills.,emergency_query
+Good morning,small_talk
+What exercises are safe in the third trimester?,general_pregnancy_education
+Importance of iron during pregnancy.,general_pregnancy_education
+What can you do?,small_talk
+How much water should I drink daily?,general_pregnancy_education
+Weight gain during pregnancy guide.,general_pregnancy_education
+What should I look for in the scan?,ml_result_explanation
+Development of the cerebellum.,brain_development
+My blood pressure is very high.,emergency_query
+How many calories should I consume?,general_pregnancy_education
+Is my data safe when I upload?,image_upload_help
+Thanks,small_talk
+See you,small_talk
+What is the treatment for this abnormality?,medical_advice_request
+Tell me what to do next based on this.,medical_advice_request
+Does it support PDF scans?,image_upload_help
+Should I be concerned?,medical_advice_request
+Bye,small_talk
+When does brain formation begin?,brain_development
+What's PregAI?,small_talk
+Formation of the brain stem.,brain_development
+"Help, I'm having a seizure.",emergency_query
+Can I use a JPEG file?,image_upload_help
+Is this result dangerous?,medical_advice_request
+Is this a high risk pregnancy?,medical_advice_request
+Where is the upload button?,image_upload_help
+Is this serious?,medical_advice_request
+Can I upload multiple images?,image_upload_help
+Hello,small_talk
+Thank you,small_talk
+Can you tell me my baby's diagnosis?,medical_advice_request
+Brain growth in the third trimester.,brain_development
+What does the prediction score represent?,ml_result_explanation
+Help,small_talk
+What action should I take?,medical_advice_request
+Tell me about fetal neural development.,brain_development
+Hey there,small_talk
+How accurate is this classification?,ml_result_explanation
+What are the highlighted regions?,ml_result_explanation
+I'm feeling dizzy and faint.,emergency_query
+How are you?,small_talk
+Is it safe to exercise while pregnant?,general_pregnancy_education
+Is my baby going to be okay?,medical_advice_request
+Can you explain my scan results?,ml_result_explanation
+What nutrients are important for fetal development?,general_pregnancy_education
+What do the red areas on my ultrasound indicate?,ml_result_explanation
+Emergency - I need help now.,emergency_query
+How to re-upload a photo.,image_upload_help
+My baby's heart rate is low.,emergency_query
+What's the process for uploading?,image_upload_help
+When does the brain look like a human brain?,brain_development
+Hi,small_talk
+Can you tell me a joke?,small_talk
+What does this abnormal result mean?,ml_result_explanation
+When do brain waves begin?,brain_development
+I can't breathe properly.,emergency_query
+Can I drink herbal tea?,general_pregnancy_education
+Why was my image rejected?,image_upload_help
+I think something is wrong.,emergency_query

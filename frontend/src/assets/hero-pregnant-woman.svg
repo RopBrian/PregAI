@@ -1,0 +1,68 @@
+<svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a3933;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2419;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="clothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f0f8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0dce8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="600" fill="#faf7f1"/>
+  
+  <!-- Hair -->
+  <ellipse cx="200" cy="120" rx="85" ry="95" fill="#1a1410"/>
+  <path d="M 130 110 Q 120 80 140 50 Q 160 20 200 15 Q 240 20 260 50 Q 280 80 270 110" fill="#1a1410"/>
+  
+  <!-- Head -->
+  <circle cx="200" cy="140" r="70" fill="url(#skinGradient)"/>
+  
+  <!-- Neck -->
+  <rect x="175" y="200" width="50" height="30" fill="url(#skinGradient)"/>
+  
+  <!-- Body/Pregnancy bump -->
+  <ellipse cx="200" cy="350" rx="95" ry="140" fill="url(#clothGradient)"/>
+  
+  <!-- Left arm -->
+  <path d="M 120 240 Q 80 260 70 340" stroke="url(#skinGradient)" stroke-width="28" fill="none" stroke-linecap="round"/>
+  
+  <!-- Right arm -->
+  <path d="M 280 240 Q 320 260 330 340" stroke="url(#skinGradient)" stroke-width="28" fill="none" stroke-linecap="round"/>
+  
+  <!-- Left hand -->
+  <circle cx="70" cy="340" r="18" fill="url(#skinGradient)"/>
+  
+  <!-- Right hand -->
+  <circle cx="330" cy="340" r="18" fill="url(#skinGradient)"/>
+  
+  <!-- Left leg -->
+  <rect x="165" y="470" width="32" height="120" fill="url(#skinGradient)" rx="16"/>
+  
+  <!-- Right leg -->
+  <rect x="203" y="470" width="32" height="120" fill="url(#skinGradient)" rx="16"/>
+  
+  <!-- Left foot -->
+  <ellipse cx="181" cy="595" rx="22" ry="16" fill="url(#skinGradient)"/>
+  
+  <!-- Right foot -->
+  <ellipse cx="219" cy="595" rx="22" ry="16" fill="url(#skinGradient)"/>
+  
+  <!-- Eyes -->
+  <circle cx="175" cy="125" r="6" fill="#1a1410"/>
+  <circle cx="225" cy="125" r="6" fill="#1a1410"/>
+  <circle cx="177" cy="123" r="2" fill="#ffffff"/>
+  <circle cx="227" cy="123" r="2" fill="#ffffff"/>
+  
+  <!-- Smile -->
+  <path d="M 185 155 Q 200 168 215 155" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Ultrasound images held in hand - small details -->
+  <rect x="20" y="320" width="35" height="50" fill="#f0f0f0" stroke="#999" stroke-width="1" rx="2"/>
+  <rect x="25" y="330" width="25" height="30" fill="#2a2a4a" opacity="0.6"/>
+  
+  <rect x="30" y="380" width="35" height="50" fill="#f0f0f0" stroke="#999" stroke-width="1" rx="2"/>
+  <rect x="35" y="390" width="25" height="30" fill="#2a2a4a" opacity="0.6"/>
+</svg>

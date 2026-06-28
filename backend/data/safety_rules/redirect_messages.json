@@ -1,0 +1,13 @@
+{
+  "medical_advice_request": "I cannot provide medical advice or tell you what actions to take regarding your health. If you have concerns about your pregnancy or ultrasound results, please contact your healthcare provider for personalized medical guidance.",
+  
+  "diagnosis_request": "I cannot diagnose medical conditions or interpret your specific medical situation. Please consult your healthcare provider who can review your complete medical history and provide a proper diagnosis.",
+  
+  "emergency_query": "This sounds like it may require immediate medical attention. Please call emergency services (911) or contact your healthcare provider immediately. Do not delay seeking medical help.",
+  
+  "medication_request": "I cannot recommend medications or advise on drug safety during pregnancy. Please consult your doctor or pharmacist for medication guidance tailored to your specific situation.",
+  
+  "treatment_advice": "I cannot provide treatment recommendations. Please discuss treatment options with your healthcare provider who can evaluate your individual circumstances.",
+  
+  "generic_blocked": "I'm designed to provide general educational information about pregnancy only. For medical advice, diagnosis, or treatment recommendations, please consult your healthcare provider."
+}

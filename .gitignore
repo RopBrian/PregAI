@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PregAi/
+
+# Virtual Environments
+venv/
+.venv/
+ENV/
+
+# Sensitive data
+.env
+.env.*
+!.env.example
+!*.env.example
+backend/.env
+
+# Tests
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.coverage
+htmlcov/
+
+# Machine Learning
+ml_work/*.ipynb
+ml_work/*.pth
+ml_work/*.pt
+ml_work/*.bin
+ml_work/*.safetensors
+ml_work/*.xlsx
+ml_work/*.csv
+ml_work/*.pkl
+backend/data/distilbert_local/
+backend/data/models/
+backend/data/intent_training/trained_model/
+backend/data/intent_training/trained_model/checkpoint-*/
+backend/data/intent_training/trained_model/runs/
+backend/data/intent_training/trained_model/*.safetensors
+backend/data/intent_training/trained_model/*.bin
+backend/data/intent_training/trained_model/*.pt
+
+# Frontend (Node/Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+frontend/*.log
+
+# Logs and Temporary files
+*.log
+backend/static/uploads/*
+!backend/static/uploads/.gitkeep
+backend/static/results/*
+!backend/static/results/.gitkeep
+test_log.txt
+verif_log.txt
+verif_log_v2.txt
+deepseek_json_*.json
+database.txt
+llm_models.txt
+t&c.txt
+
+# Generated Documentation
+proposal.pdf
+
+# Editor/OS settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

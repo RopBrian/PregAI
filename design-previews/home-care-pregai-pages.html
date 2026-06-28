@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PregAI Home Care Frontend Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fff8ed;
+      --paper-2: #f3e4d2;
+      --ink: #243126;
+      --muted: #6d766e;
+      --line: rgba(36, 49, 38, .15);
+      --leaf: #496b57;
+      --leaf-dark: #243f31;
+      --coral: #c15f4a;
+      --coral-dark: #8f3f31;
+      --sun: #e6b86c;
+      --white: #fffdf8;
+      --danger: #a33d35;
+      --blue: #365d70;
+      --shadow: 0 24px 70px rgba(36, 49, 38, .13);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #18211b;
+      color: var(--ink);
+      font-family: "Instrument Sans", sans-serif;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 24px;
+      background: rgba(24, 33, 27, .9);
+      color: #fff8ed;
+      border-bottom: 1px solid rgba(255,255,255,.13);
+      backdrop-filter: blur(16px);
+    }
+    .top strong {
+      font-family: "DM Serif Display", serif;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+    .top nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .top a {
+      text-decoration: none;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(255,248,237,.86);
+    }
+    .brief {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      padding: 44px 28px 26px;
+      color: #fff8ed;
+      background:
+        linear-gradient(120deg, rgba(73,107,87,.4), transparent 45%),
+        #18211b;
+      align-items: end;
+    }
+    .brief h1 {
+      margin: 0;
+      max-width: 900px;
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(42px, 7vw, 96px);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+    .brief p {
+      color: rgba(255,248,237,.76);
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    .brief-note {
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255,255,255,.05);
+    }
+    .page {
+      padding: 28px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: #18211b;
+    }
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 16px;
+      color: #fff8ed;
+    }
+    .page-head h2 {
+      margin: 0;
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(32px, 4vw, 58px);
+      line-height: .95;
+    }
+    .page-head p {
+      margin: 7px 0 0;
+      max-width: 760px;
+      color: rgba(255,248,237,.72);
+      line-height: 1.55;
+    }
+    .browser {
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.17);
+      background: var(--paper);
+      box-shadow: 0 28px 100px rgba(0,0,0,.32);
+    }
+    .chrome {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      color: rgba(255,255,255,.55);
+      background: #131914;
+      font-size: 13px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #d8695f; }
+    .dot:nth-child(2) { background: #e8bd62; }
+    .dot:nth-child(3) { background: #72bf78; }
+    .url {
+      margin-left: 8px;
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+    }
+    .mock { min-height: 720px; background: var(--paper); }
+    .brand {
+      font-family: "DM Serif Display", serif;
+      font-size: 29px;
+      letter-spacing: 0;
+    }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: var(--coral);
+      color: white;
+      font-weight: 800;
+      cursor: default;
+    }
+    .btn.leaf { background: var(--leaf); }
+    .btn.quiet {
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+    .btn.danger { background: var(--danger); }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--ink);
+      font-weight: 900;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      color: var(--leaf);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .soft-divider { border-top: 1px solid var(--line); }
+    .human-photo {
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+    .human-photo:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 40%, rgba(25,35,28,.56));
+      pointer-events: none;
+    }
+
+    /* Landing */
+    .landing-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 21px 30px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,248,237,.9);
+    }
+    .landing-nav .links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .landing-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(340px, .96fr);
+      min-height: 590px;
+    }
+    .landing-copy {
+      padding: 56px 34px 34px 54px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .landing-copy h3 {
+      margin: 18px 0;
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(48px, 6vw, 88px);
+      line-height: .91;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+    .landing-copy p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .landing-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .landing-photo {
+      min-height: 590px;
+      background-image: url("https://unsplash.com/photos/5Q3DOB4KJgk/download?force=true&w=1400");
+    }
+    .landing-photo-note {
+      position: absolute;
+      z-index: 1;
+      left: -80px;
+      bottom: 34px;
+      width: 300px;
+      padding: 18px;
+      background: rgba(255,253,248,.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      line-height: 1.48;
+    }
+    .landing-bands {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .band {
+      min-height: 164px;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+    }
+    .band h4 { margin: 0 0 10px; font-size: 19px; }
+    .band p { margin: 0; color: var(--muted); line-height: 1.45; }
+
+    /* Auth */
+    .auth-screen {
+      display: grid;
+      grid-template-columns: minmax(300px, 480px) 1fr;
+      min-height: 720px;
+    }
+    .auth-photo {
+      background-image: url("https://unsplash.com/photos/3Bmkmlk35l4/download?force=true&w=1200");
+      color: white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .auth-photo h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-family: "DM Serif Display", serif;
+      font-size: 54px;
+      line-height: .96;
+      max-width: 360px;
+    }
+    .auth-panel {
+      padding: 38px;
+      display: grid;
+      place-items: center;
+    }
+    .form-shell {
+      width: min(100%, 560px);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .form-shell h3 {
+      margin: 0;
+      font-family: "DM Serif Display", serif;
+      font-size: 42px;
+    }
+    .form-shell p { color: var(--muted); line-height: 1.55; }
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { margin-top: 14px; }
+    .field label { display: block; margin-bottom: 7px; font-weight: 800; font-size: 13px; }
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 13px 15px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .terms-line {
+      margin: 18px 0;
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .terms-preview {
+      margin-top: 16px;
+      padding: 16px;
+      border-left: 4px solid var(--danger);
+      background: #f7e9dd;
+      line-height: 1.5;
+    }
+
+    /* App shell */
+    .app-shell {
+      display: grid;
+      grid-template-columns: 264px 1fr;
+      min-height: 720px;
+    }
+    .side {
+      background: #f1e2d0;
+      border-right: 1px solid var(--line);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .side-nav { margin-top: 28px; display: grid; gap: 8px; }
+    .side-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(36,49,38,.1);
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .side-item.active { color: var(--ink); }
+    .side-history {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .history-title {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .history-item {
+      margin-top: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(36,49,38,.09);
+      line-height: 1.35;
+    }
+    .account-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(255,253,248,.65);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--leaf);
+      color: white;
+      font-weight: 900;
+    }
+    .content { background: var(--paper); }
+    .content-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .content-actions { display: flex; gap: 10px; align-items: center; }
+
+    /* Chat */
+    .chat-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 24px;
+      padding: 26px;
+    }
+    .chat-main h3 {
+      margin: 0 0 12px;
+      font-family: "DM Serif Display", serif;
+      font-size: 56px;
+      line-height: .96;
+    }
+    .suggestions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 22px 0;
+    }
+    .suggestions button {
+      text-align: left;
+      min-height: 94px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      padding: 14px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+    .message {
+      max-width: 720px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      line-height: 1.58;
+    }
+    .message .who {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--leaf);
+      font-weight: 900;
+    }
+    .upload-panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      align-self: start;
+    }
+    .upload-target {
+      min-height: 190px;
+      border: 1px dashed rgba(36,49,38,.32);
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+      background: #faf0e2;
+      color: var(--muted);
+    }
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+    }
+    .chat-input span { flex: 1; padding: 12px; color: var(--muted); }
+
+    /* Scans */
+    .scan-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(380px, 1.18fr);
+      gap: 0;
+      min-height: 682px;
+    }
+    .scan-list {
+      padding: 26px;
+      border-right: 1px solid var(--line);
+      background: #f1e2d0;
+    }
+    .scan-list h3,
+    .report-view h3,
+    .edu-main h3,
+    .profile-main h3,
+    .admin-main h3 {
+      margin: 0;
+      font-family: "DM Serif Display", serif;
+      font-size: 46px;
+      line-height: .96;
+    }
+    .scan-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(36,49,38,.13);
+    }
+    .thumb {
+      width: 72px;
+      height: 58px;
+      border-radius: 6px;
+      background:
+        radial-gradient(circle at 45% 48%, rgba(255,255,255,.45), transparent 20%),
+        linear-gradient(135deg, #202421, #6f876f);
+    }
+    .report-view { padding: 26px; background: var(--paper); }
+    .report-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .scan-image {
+      min-height: 190px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 52% 48%, rgba(255,255,255,.55), transparent 18%),
+        radial-gradient(circle at 45% 54%, rgba(230,184,108,.42), transparent 22%),
+        linear-gradient(135deg, #171b18, #526b60);
+      position: relative;
+    }
+    .scan-image span {
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .metric {
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+    .metric strong { display: block; font-size: 28px; }
+    .calm-warning {
+      margin-top: 20px;
+      padding: 16px;
+      border-left: 4px solid var(--coral);
+      background: #f7e7db;
+      line-height: 1.5;
+    }
+
+    /* Education */
+    .edu-layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 430px) 1fr;
+      min-height: 682px;
+    }
+    .edu-photo {
+      background-image: url("https://images.unsplash.com/photo-1576765608622-067973a79f53?auto=format&fit=crop&w=1000&q=80");
+      color: white;
+      padding: 28px;
+      display: flex;
+      align-items: end;
+    }
+    .edu-photo h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-family: "DM Serif Display", serif;
+      font-size: 52px;
+      line-height: .96;
+    }
+    .edu-main { padding: 28px; }
+    .lesson {
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    .lesson small {
+      color: var(--coral-dark);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .lesson h4 { margin: 0 0 8px; font-size: 22px; }
+    .lesson p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    /* Profile */
+    .profile-main { padding: 28px; }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .profile-section {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    .profile-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(36,49,38,.09);
+    }
+    .profile-line span { color: var(--muted); }
+    .danger-zone {
+      grid-column: 1 / -1;
+      background: #f7e5da;
+      border-left: 4px solid var(--danger);
+      padding: 20px;
+      border-radius: var(--radius);
+    }
+    .danger-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+    /* Admin */
+    .admin-main { padding: 28px; }
+    .stat-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 24px 0;
+    }
+    .stat {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+    .stat strong { display: block; font-size: 36px; }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 22px;
+    }
+    .log-list, .filter-panel {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+    .log-row {
+      display: grid;
+      grid-template-columns: 80px 90px 1fr 100px;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(36,49,38,.1);
+      font-size: 14px;
+      align-items: center;
+    }
+    .tag {
+      display: inline-flex;
+      justify-content: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #ead8c6;
+      color: var(--leaf-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .tag.warn { background: #f0d6c2; color: var(--danger); }
+    .filter-panel input, .filter-panel select {
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 13px 15px;
+      background: var(--white);
+    }
+
+    .notes {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      color: rgba(255,248,237,.8);
+    }
+    .notes div {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      padding: 13px;
+      line-height: 1.45;
+      background: rgba(255,255,255,.04);
+    }
+    .notes strong {
+      display: block;
+      color: #fff8ed;
+      margin-bottom: 6px;
+    }
+    .footer {
+      padding: 30px 28px 50px;
+      color: rgba(255,248,237,.75);
+      background: #18211b;
+      line-height: 1.6;
+    }
+    .footer h2 {
+      margin: 0 0 10px;
+      color: #fff8ed;
+      font-family: "DM Serif Display", serif;
+      font-size: 40px;
+    }
+    .footer a { color: #e6b86c; }
+
+    @media (max-width: 980px) {
+      .brief,
+      .landing-hero,
+      .auth-screen,
+      .app-shell,
+      .chat-stage,
+      .scan-layout,
+      .edu-layout,
+      .profile-grid,
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+      .landing-bands,
+      .suggestions,
+      .metrics,
+      .stat-band,
+      .notes {
+        grid-template-columns: 1fr 1fr;
+      }
+      .landing-photo-note {
+        left: 20px;
+        right: 20px;
+        width: auto;
+      }
+      .side { min-height: 320px; }
+    }
+    @media (max-width: 620px) {
+      .landing-bands,
+      .suggestions,
+      .metrics,
+      .stat-band,
+      .notes,
+      .input-grid,
+      .report-images {
+        grid-template-columns: 1fr;
+      }
+      .lesson,
+      .scan-row,
+      .log-row {
+        grid-template-columns: 1fr;
+      }
+      .landing-copy { padding: 34px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <strong>PregAI Home Care</strong>
+    <nav>
+      <a href="#landing">Landing</a>
+      <a href="#auth">Auth</a>
+      <a href="#chat">Chat</a>
+      <a href="#scans">Scans</a>
+      <a href="#education">Education</a>
+      <a href="#profile">Profile</a>
+      <a href="#admin">Admin</a>
+    </nav>
+  </header>
+
+  <section class="brief">
+    <div>
+      <h1>The Home Care direction, expanded into real product pages.</h1>
+      <p>This keeps your current component map and functionality, but changes the visual language: fewer repeated cards, more full-width bands and divided sections, real human photography, soft clinical warmth, and button/message labels that sound like a person.</p>
+    </div>
+    <div class="brief-note">
+      Design thesis: PregAI should feel like a calm care companion at home, not a cold diagnostic machine. The AI is present, but the mother’s understanding, privacy, and next step are the center of the interface.
+    </div>
+  </section>
+
+  <section class="page" id="landing">
+    <div class="page-head">
+      <div>
+        <h2>Landing Page</h2>
+        <p>Uses one strong human image, direct reassurance, and feature bands instead of a stack of cards. Header maps to the existing `Header` and `LandingPage` structure.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app</span></div>
+      <div class="mock">
+        <nav class="landing-nav">
+          <div class="brand">PregAI</div>
+          <div class="links"><span>How it helps</span><span>Learning room</span><span>Questions</span><span>Support</span></div>
+          <button class="btn quiet">Sign in</button>
+        </nav>
+        <section class="landing-hero">
+          <div class="landing-copy">
+            <div>
+              <span class="pill">Private pregnancy AI support</span>
+              <h3>Understand your scan without feeling alone.</h3>
+              <p>PregAI helps you upload fetal brain ultrasound images, read AI screening results in plain language, and keep trusted pregnancy learning close by. It supports your questions; it does not replace your clinician.</p>
+              <div class="landing-actions">
+                <button class="btn">Check my scan privately</button>
+                <button class="btn quiet">Show me how it works</button>
+              </div>
+            </div>
+            <p><strong>Landing message style:</strong> calm, specific, and honest about limits. No exaggerated claims, no cold "submit image" language.</p>
+          </div>
+          <div class="landing-photo human-photo">
+            <div class="landing-photo-note">
+              <strong>What happens after upload?</strong>
+              <p>PregAI checks whether the image looks like a fetal brain ultrasound, screens it, explains the result, and saves a report you can discuss with your provider.</p>
+            </div>
+          </div>
+        </section>
+        <section class="landing-bands">
+          <div class="band"><h4>Ask gently</h4><p>Chat answers explain results with human wording and medical humility.</p></div>
+          <div class="band"><h4>Upload privately</h4><p>Scan upload remains one tap, with clear progress and next steps.</p></div>
+          <div class="band"><h4>Keep history</h4><p>Reports are saved as readable records, not mystery AI outputs.</p></div>
+          <div class="band"><h4>Learn weekly</h4><p>Education is organized by pregnancy stage and common worries.</p></div>
+        </section>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Check my scan privately", "Show me how it works".</div>
+      <div><strong>Assets</strong>Hero: real pregnant mother holding ultrasound.</div>
+      <div><strong>Layout</strong>Hero split plus full-width feature bands.</div>
+      <div><strong>Components</strong>`LandingPage`, `Header`.</div>
+    </div>
+  </section>
+
+  <section class="page" id="auth">
+    <div class="page-head">
+      <div>
+        <h2>Auth And Terms</h2>
+        <p>Registration feels private and adult, not app-store cute. Terms are framed as plain safety language with the educational-purpose warning visible.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/sign-in</span></div>
+      <div class="mock auth-screen">
+        <aside class="auth-photo human-photo">
+          <div class="brand">PregAI</div>
+          <h3>Your scans and questions stay personal.</h3>
+        </aside>
+        <main class="auth-panel">
+          <section class="form-shell">
+            <span class="pill">Secure account</span>
+            <h3>Create your private space</h3>
+            <p>Use PregAI to save scan reports, continue conversations, and manage your data whenever you need.</p>
+            <div class="input-grid">
+              <div class="field"><label>First name</label><input value="Amina" readonly></div>
+              <div class="field"><label>Last name</label><input value="K." readonly></div>
+            </div>
+            <div class="field"><label>Email</label><input value="amina@example.com" readonly></div>
+            <div class="field"><label>Password</label><input value="••••••••••" readonly></div>
+            <div class="terms-line"><input type="checkbox" checked readonly><span>I understand PregAI is educational support, not a diagnosis or emergency service.</span></div>
+            <button class="btn">Create my account</button>
+            <button class="btn quiet">I already have an account</button>
+            <div class="terms-preview">
+              <strong>Terms preview:</strong> If you have bleeding, severe pain, fever, reduced movement, or urgent symptoms, contact emergency services or your healthcare provider immediately.
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Create my account", "I already have an account".</div>
+      <div><strong>Message</strong>Terms become readable safety copy.</div>
+      <div><strong>Layout</strong>Photo left, privacy-led form right.</div>
+      <div><strong>Components</strong>`Auth`, `TermsModal`.</div>
+    </div>
+  </section>
+
+  <section class="page" id="chat">
+    <div class="page-head">
+      <div>
+        <h2>Mother App: Chat And Upload</h2>
+        <p>The main app shell still has sidebar sessions, navigation, chat stream, upload, drag/drop, and progress states, but the tone is softer and the upload area feels safer.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/app/chat</span></div>
+      <div class="mock app-shell">
+        <aside class="side">
+          <div>
+            <div class="brand">PregAI</div>
+            <nav class="side-nav">
+              <div class="side-item active"><span>Ask PregAI</span><strong>●</strong></div>
+              <div class="side-item"><span>My scans</span><strong>3</strong></div>
+              <div class="side-item"><span>Learning room</span><strong></strong></div>
+              <div class="side-item"><span>My account</span><strong></strong></div>
+            </nav>
+            <section class="side-history">
+              <div class="history-title"><span>Recent chats</span><span>New</span></div>
+              <div class="history-item"><strong>Report wording</strong><br><span>What does normal mean?</span></div>
+              <div class="history-item"><strong>Upload help</strong><br><span>Which image should I use?</span></div>
+            </section>
+          </div>
+          <div class="account-pill"><div class="avatar">A</div><div><strong>Amina</strong><br><span>Mother account</span></div></div>
+        </aside>
+        <main class="content">
+          <div class="content-top">
+            <strong>Ask PregAI</strong>
+            <div class="content-actions"><button class="icon-btn">☾</button><button class="btn quiet">Start fresh</button></div>
+          </div>
+          <section class="chat-stage">
+            <div class="chat-main">
+              <span class="pill">Private chat</span>
+              <h3>What would you like to understand today?</h3>
+              <div class="suggestions">
+                <button>Explain my report in simple words</button>
+                <button>Help me choose the right scan image</button>
+                <button>What should I ask my doctor?</button>
+              </div>
+              <div class="message"><span class="who">You</span>What does "normal pattern" mean in my scan report?</div>
+              <div class="message"><span class="who">PregAI</span>It means your scan looked similar to examples labeled as healthy development in the model. That is reassuring, but it is still a screening result. I would keep the report and share it at your next appointment.</div>
+              <div class="chat-input"><button class="icon-btn">+</button><span>Ask about your pregnancy or upload a scan</span><button class="btn">Send</button></div>
+            </div>
+            <aside class="upload-panel">
+              <span class="pill">Scan upload</span>
+              <h3>Upload when ready</h3>
+              <p>Use a clear fetal brain ultrasound image. We will tell you if the image cannot be analyzed.</p>
+              <div class="upload-target"><div><strong>Drop your scan here</strong><br>or choose an image from your device</div></div>
+              <p><strong>Progress copy:</strong> "Your scan uploaded. PregAI is checking the image now."</p>
+              <button class="btn leaf">Choose scan image</button>
+            </aside>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Start fresh", "Choose scan image", "Send".</div>
+      <div><strong>Messages</strong>Warm, plain, clinician-aware.</div>
+      <div><strong>Layout</strong>Sidebar retained, chat has breathing room.</div>
+      <div><strong>Components</strong>`Sidebar`, `ChatWindow`.</div>
+    </div>
+  </section>
+
+  <section class="page" id="scans">
+    <div class="page-head">
+      <div>
+        <h2>My Scans And Report</h2>
+        <p>Scan cards become a record list plus a readable report panel. The report modal can use this same structure when opened over the app.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/app/scans</span></div>
+      <div class="mock app-shell">
+        <aside class="side">
+          <div>
+            <div class="brand">PregAI</div>
+            <nav class="side-nav">
+              <div class="side-item"><span>Ask PregAI</span></div>
+              <div class="side-item active"><span>My scans</span><strong>●</strong></div>
+              <div class="side-item"><span>Learning room</span></div>
+              <div class="side-item"><span>My account</span></div>
+            </nav>
+          </div>
+          <div class="account-pill"><div class="avatar">A</div><div><strong>Amina</strong><br><span>Mother account</span></div></div>
+        </aside>
+        <main class="scan-layout">
+          <section class="scan-list">
+            <span class="pill">Scan history</span>
+            <h3>Your saved reports</h3>
+            <p>Open, export, or delete reports whenever you need.</p>
+            <div class="scan-row"><div class="thumb"></div><div><strong>Normal pattern</strong><br><span>May 2, 2026 · 96%</span></div><button class="btn quiet">Open</button></div>
+            <div class="scan-row"><div class="thumb"></div><div><strong>Image could not be checked</strong><br><span>April 29, 2026</span></div><button class="btn quiet">View</button></div>
+            <div class="scan-row"><div class="thumb"></div><div><strong>Normal pattern</strong><br><span>April 12, 2026 · 93%</span></div><button class="btn quiet">Open</button></div>
+          </section>
+          <section class="report-view">
+            <span class="pill">Clinical report view</span>
+            <h3>Normal pattern</h3>
+            <p>AI confidence: 96 percent. This report is saved to your history and can be shared with your healthcare provider.</p>
+            <div class="report-images">
+              <div class="scan-image"><span>Original scan</span></div>
+              <div class="scan-image"><span>AI heatmap</span></div>
+            </div>
+            <div class="metrics">
+              <div class="metric"><strong>Valid</strong><span>Fetal brain image</span></div>
+              <div class="metric"><strong>96%</strong><span>Model confidence</span></div>
+              <div class="metric"><strong>Saved</strong><span>May 2, 2026</span></div>
+            </div>
+            <div class="calm-warning"><strong>Important:</strong> This is a screening explanation, not a diagnosis. Please review the report with your clinician, especially if anything feels concerning.</div>
+            <div class="landing-actions"><button class="btn">Export report</button><button class="btn quiet">Delete this scan</button></div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Open", "Export report", "Delete this scan".</div>
+      <div><strong>States</strong>Success, invalid image, empty history.</div>
+      <div><strong>Layout</strong>Record list beside report, fewer cards.</div>
+      <div><strong>Components</strong>`MyScans`, report modal.</div>
+    </div>
+  </section>
+
+  <section class="page" id="education">
+    <div class="page-head">
+      <div>
+        <h2>Education</h2>
+        <p>Education becomes a learning room with chapter rows instead of separate cards. Expandable details from the current component map cleanly into this layout.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/app/education</span></div>
+      <div class="mock app-shell">
+        <aside class="side">
+          <div>
+            <div class="brand">PregAI</div>
+            <nav class="side-nav">
+              <div class="side-item"><span>Ask PregAI</span></div>
+              <div class="side-item"><span>My scans</span></div>
+              <div class="side-item active"><span>Learning room</span><strong>●</strong></div>
+              <div class="side-item"><span>My account</span></div>
+            </nav>
+          </div>
+          <div class="account-pill"><div class="avatar">A</div><div><strong>Amina</strong><br><span>Mother account</span></div></div>
+        </aside>
+        <main class="edu-layout">
+          <aside class="edu-photo human-photo">
+            <h3>Learn in small, steady pieces.</h3>
+          </aside>
+          <section class="edu-main">
+            <span class="pill">Learning room</span>
+            <h3>Pregnancy education</h3>
+            <p>Short, reassuring explanations you can open when you need them.</p>
+            <div class="lesson"><small>Baby development</small><div><h4>First trimester</h4><p>Vital organs begin forming. Fatigue and nausea are common, and early appointments help establish care.</p></div><button class="btn quiet">Read</button></div>
+            <div class="lesson"><small>Baby development</small><div><h4>Second trimester</h4><p>Movement often begins. This is also when many fetal brain structures become easier to see on ultrasound.</p></div><button class="btn quiet">Read</button></div>
+            <div class="lesson"><small>Nutrition</small><div><h4>Folic acid, iron, hydration</h4><p>Simple guidance on nutrients that support pregnancy and fetal development.</p></div><button class="btn quiet">Read</button></div>
+            <div class="lesson"><small>Questions</small><div><h4>What to ask after a scan</h4><p>A gentle checklist for discussing AI screening results with your healthcare provider.</p></div><button class="btn leaf">Save</button></div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Read", "Save", "Ask PregAI about this".</div>
+      <div><strong>Assets</strong>Quiet care/home image, not medical stock clutter.</div>
+      <div><strong>Layout</strong>Chapter list with expandable rows.</div>
+      <div><strong>Components</strong>`Education`.</div>
+    </div>
+  </section>
+
+  <section class="page" id="profile">
+    <div class="page-head">
+      <div>
+        <h2>Profile And Privacy</h2>
+        <p>Profile is less like settings clutter and more like a data-rights page. The deletion flow remains serious and human.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/app/profile</span></div>
+      <div class="mock app-shell">
+        <aside class="side">
+          <div>
+            <div class="brand">PregAI</div>
+            <nav class="side-nav">
+              <div class="side-item"><span>Ask PregAI</span></div>
+              <div class="side-item"><span>My scans</span></div>
+              <div class="side-item"><span>Learning room</span></div>
+              <div class="side-item active"><span>My account</span><strong>●</strong></div>
+            </nav>
+          </div>
+          <div class="account-pill"><div class="avatar">A</div><div><strong>Amina</strong><br><span>Mother account</span></div></div>
+        </aside>
+        <main class="profile-main">
+          <span class="pill">Account and privacy</span>
+          <h3>Your information belongs to you.</h3>
+          <p>Manage identity, contact details, security, and scan data in one place.</p>
+          <div class="profile-grid">
+            <section class="profile-section">
+              <h4>Personal details</h4>
+              <div class="profile-line"><span>Full name</span><strong>Amina K.</strong></div>
+              <div class="profile-line"><span>Username</span><strong>@amina</strong></div>
+              <div class="profile-line"><span>Account type</span><strong>Mother account</strong></div>
+            </section>
+            <section class="profile-section">
+              <h4>Contact and security</h4>
+              <div class="profile-line"><span>Email</span><strong>amina@example.com</strong></div>
+              <div class="profile-line"><span>Member since</span><strong>May 2, 2026</strong></div>
+              <button class="btn quiet">Change password</button>
+            </section>
+            <section class="danger-zone">
+              <h4>Delete account and data</h4>
+              <p>Deleting your account removes your profile, chat history, uploaded scans, and AI reports. This cannot be undone.</p>
+              <div class="danger-actions"><button class="btn quiet">Keep my account</button><button class="btn danger">Delete my account and data</button></div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Keep my account", "Delete my account and data".</div>
+      <div><strong>Message</strong>Direct, non-alarming, privacy-led.</div>
+      <div><strong>Layout</strong>Two sections plus one danger band.</div>
+      <div><strong>Components</strong>`Profile` deletion modal.</div>
+    </div>
+  </section>
+
+  <section class="page" id="admin">
+    <div class="page-head">
+      <div>
+        <h2>Admin Dashboard And Logs</h2>
+        <p>Admin keeps the Home Care visual language but becomes denser and more operational. Logs are scannable without turning into generic enterprise blue-gray UI.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">pregai.app/admin/logs</span></div>
+      <div class="mock app-shell">
+        <aside class="side">
+          <div>
+            <div class="brand">PregAI</div>
+            <nav class="side-nav">
+              <div class="side-item active"><span>Overview</span><strong>●</strong></div>
+              <div class="side-item"><span>System logs</span><strong>100</strong></div>
+              <div class="side-item"><span>My account</span></div>
+            </nav>
+          </div>
+          <div class="account-pill"><div class="avatar">S</div><div><strong>System admin</strong><br><span>Monitoring</span></div></div>
+        </aside>
+        <main class="admin-main">
+          <span class="pill">System admin</span>
+          <h3>Keep the care system accountable.</h3>
+          <div class="stat-band">
+            <div class="stat"><strong>1,248</strong><span>Total users</span></div>
+            <div class="stat"><strong>6</strong><span>Safety alerts today</span></div>
+            <div class="stat"><strong>99.9%</strong><span>Uptime</span></div>
+            <div class="stat"><strong>42</strong><span>Scans processed</span></div>
+          </div>
+          <section class="admin-grid">
+            <div class="filter-panel">
+              <h4>Filter logs</h4>
+              <input value="Search by message, user, or IP" readonly>
+              <select><option>All modules</option><option>AUTH</option><option>ML</option><option>CHAT</option><option>SAFETY</option></select>
+              <div class="landing-actions"><button class="btn quiet">Clear filters</button><button class="btn leaf">Export CSV</button></div>
+            </div>
+            <div class="log-list">
+              <div class="log-row"><strong>Level</strong><strong>Module</strong><strong>Activity</strong><strong>Time</strong></div>
+              <div class="log-row"><span class="tag">INFO</span><span>CHAT</span><span>Mother asked about report language</span><span>10:42</span></div>
+              <div class="log-row"><span class="tag">ML</span><span>SCAN</span><span>Heatmap generated for saved report</span><span>10:35</span></div>
+              <div class="log-row"><span class="tag warn">WARN</span><span>SAFETY</span><span>Emergency guidance shown in chat</span><span>09:58</span></div>
+              <div class="log-row"><span class="tag">AUTH</span><span>LOGIN</span><span>User session verified</span><span>09:44</span></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="notes">
+      <div><strong>Buttons</strong>"Export CSV", "Clear filters", "Open system logs".</div>
+      <div><strong>Message</strong>Accountability language, not surveillance drama.</div>
+      <div><strong>Layout</strong>Stats band plus filter/log work area.</div>
+      <div><strong>Components</strong>`AdminDashboard`, `SystemLogs`.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h2>Implementation Translation</h2>
+    <p>To implement this in the actual React frontend, the safest path is mostly CSS and markup structure: keep API logic and state behavior intact, retune component labels, replace repeated glass cards with section dividers and bands, add licensed human imagery to `src/assets`, and create shared design tokens in `global.css` for the Home Care system.</p>
+    <p>Photo references used for preview include Unsplash pages:
+      <a href="https://unsplash.com/photos/pregnant-woman-is-happily-showing-off-her-ultrasound-5Q3DOB4KJgk">5Q3DOB4KJgk</a>,
+      <a href="https://unsplash.com/photos/a-pregnant-woman-proudly-shows-her-ultrasound-scans-3Bmkmlk35l4">3Bmkmlk35l4</a>.
+      Replace preview URLs with locally stored, licensed assets before production.
+    </p>
+  </footer>
+</body>
+</html>

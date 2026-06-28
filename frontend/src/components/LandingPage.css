@@ -1,0 +1,496 @@
+.landing-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--text-main);
+  overflow-y: auto;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 48px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    flex-direction: row;
+    padding: 100px 40px;
+    text-align: left;
+    justify-content: space-between;
+    gap: 80px;
+  }
+}
+
+.hero-content {
+  flex: 1.2;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.15;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--text-main);
+}
+
+.highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--primary-dark);
+  z-index: 1;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 100%;
+  height: 12px;
+  background: var(--primary-light);
+  opacity: 0.4;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+@media (max-width: 1023px) {
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+.primary-btn, .secondary-btn {
+  padding: 16px 36px;
+  border-radius: 18px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .primary-btn, .secondary-btn {
+    width: auto;
+  }
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 25px rgba(var(--primary-dark-rgb), 0.3);
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background: var(--primary-dark);
+  box-shadow: 0 15px 30px rgba(var(--primary-dark-rgb), 0.4);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--glass-border);
+}
+
+.secondary-btn:hover {
+  background: var(--button-bg-light);
+  border-color: var(--primary-light);
+}
+
+/* Hero Image Container */
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.glass-hero-card {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4/5;
+  background: var(--glass);
+  border-radius: 40px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xl);
+  padding: 40px;
+  position: relative;
+}
+
+.floating-logo {
+  width: 80%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(var(--primary-dark-rgb), 0.2));
+  animation: float 6s ease-in-out infinite;
+  border-radius: 20px;
+  /* Removed background to avoid white box if image has transparency issues */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.hero-stats {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+/* Sections Common */
+.features-section, .faq-section, .resources-section, .support-section {
+  padding: 80px 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Grids */
+.features-grid, .faq-grid, .resources-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .features-grid, .faq-grid, .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid, .faq-grid, .resources-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Resource specifically might want 2 columns on tablet/desktop */
+@media (min-width: 768px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Cards */
+.feature-card, .faq-card, .resource-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+  height: 100%;
+}
+
+.feature-card:hover, .faq-card:hover, .resource-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-card h3, .faq-card h3, .resource-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.feature-card p, .faq-card p, .resource-card p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: var(--button-bg-light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.res-tag {
+  align-self: flex-start;
+  padding: 6px 14px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+
+/* Support Section */
+.support-section {
+  display: flex;
+  justify-content: center;
+}
+
+.support-cta {
+  width: 100%;
+  max-width: 900px;
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.support-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 640px) {
+  .support-actions {
+    flex-direction: row;
+    max-width: none;
+    justify-content: center;
+  }
+}
+
+/* Footer */
+.landing-footer {
+  padding: 60px 24px;
+  background: var(--button-bg-light);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  font-size: 1.2rem;
+}
+
+.footer-brand img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.footer-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Clinical Calm refinements */
+.hero-section {
+  padding-top: clamp(48px, 8vw, 84px);
+  padding-bottom: clamp(36px, 6vw, 64px);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.8vw, 5.4rem);
+  line-height: 1.02;
+  font-weight: 650;
+}
+
+.highlight::after {
+  bottom: 5px;
+  height: 11px;
+  background: #d8e6df;
+  opacity: 0.9;
+}
+
+.hero-subtitle {
+  line-height: 1.65;
+}
+
+.primary-btn,
+.secondary-btn {
+  border-radius: 10px;
+  padding: 15px 28px;
+}
+
+.primary-btn {
+  background: var(--primary-dark);
+  color: #fffdf9;
+}
+
+.primary-btn:hover {
+  background: #61324f;
+}
+
+.secondary-btn {
+  background: var(--card-bg);
+}
+
+.glass-hero-card {
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: none;
+}
+
+.glass-hero-card::before {
+  content: "PRIVATE CLINICAL WORKSPACE";
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  right: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.floating-logo {
+  border-radius: 12px;
+}
+
+.stat-value,
+.section-header h2 {
+  font-family: var(--font-display);
+  font-weight: 650;
+}
+
+.features-section,
+.faq-section,
+.resources-section,
+.support-section {
+  padding-top: clamp(52px, 7vw, 68px);
+  padding-bottom: clamp(52px, 7vw, 68px);
+}
+
+.feature-card,
+.faq-card,
+.resource-card {
+  padding: 28px;
+  border-radius: 14px;
+}
+
+.feature-card:hover,
+.faq-card:hover,
+.resource-card:hover {
+  transform: translateY(-4px);
+}
+
+.icon-wrapper {
+  border-radius: 12px;
+}
+
+.support-cta {
+  border-radius: 16px;
+}

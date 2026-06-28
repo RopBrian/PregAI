@@ -1,0 +1,757 @@
+text,intent_label
+What should I eat during pregnancy?,general_pregnancy_education
+Can you explain my ultrasound prediction results?,ml_result_explanation
+What happens in the second trimester?,general_pregnancy_education
+How do I read the AI's scan analysis?,ml_result_explanation
+Is it safe to exercise while pregnant?,general_pregnancy_education
+What does a low confidence score indicate?,ml_result_explanation
+Pregnancy diet tips plz,general_pregnancy_education
+Wat does the ML result mean?,ml_result_explanation
+First trimester symptoms?,general_pregnancy_education
+Explain the prediction from my scan.,ml_result_explanation
+How much weight should I gain?,general_pregnancy_education
+What is a confidence score?,ml_result_explanation
+Can I drink coffee?,general_pregnancy_education
+"The AI said 80% confidence, is that good?",ml_result_explanation
+Vitamins needed for pregnancy?,general_pregnancy_education
+How accurate is this prediction?,ml_result_explanation
+What to avoid in third trimester?,general_pregnancy_education
+Can you break down the analysis report?,ml_result_explanation
+Prentnant and don't know what to eat,general_pregnancy_education
+What does the AI mean by 'anomaly detected'?,ml_result_explanation
+How does baby develop each month?,general_pregnancy_education
+Is 95% confidence high?,ml_result_explanation
+Safe medications during pregnancy?,general_pregnancy_education
+What's the meaning of the prediction output?,ml_result_explanation
+"Feeling tired all the time, normal?",general_pregnancy_education
+How to interpret the scan results from AI?,ml_result_explanation
+Best foods for baby brain development?,general_pregnancy_education
+Can you explain the ML model's findings?,ml_result_explanation
+What is gestational diabetes?,general_pregnancy_education
+What does 'false positive' mean in my results?,ml_result_explanation
+Excersize during pregnancy?,general_pregnancy_education
+"The AI analysis shows something, what now?",ml_result_explanation
+Morning sickness remedies?,general_pregnancy_education
+How reliable is this AI prediction?,ml_result_explanation
+What are pregnancy trimesters?,general_pregnancy_education
+Explain the confidence level on my report.,ml_result_explanation
+Can I travel while pregnant?,general_pregnancy_education
+What does the algorithm say about my scan?,ml_result_explanation
+Importance of folic acid?,general_pregnancy_education
+Is the AI's result final?,ml_result_explanation
+"Baby bump growing fast, normal?",general_pregnancy_education
+Help me understand the prediction details.,ml_result_explanation
+What to expect in labor?,general_pregnancy_education
+What does a high confidence score imply?,ml_result_explanation
+Pregnancy safe skincare?,general_pregnancy_education
+Can you clarify the AI's assessment?,ml_result_explanation
+How to sleep better while pregnant?,general_pregnancy_education
+What is the AI's prediction based on?,ml_result_explanation
+Is spotting normal?,general_pregnancy_education
+How to read the AI-generated report?,ml_result_explanation
+Prenatal yoga benefits?,general_pregnancy_education
+What does 'inconclusive' mean in AI results?,ml_result_explanation
+Food cravings meaning?,general_pregnancy_education
+Explain the machine learning output to me.,ml_result_explanation
+When does baby start kicking?,general_pregnancy_education
+What is the significance of the prediction score?,ml_result_explanation
+Can I dye my hair?,general_pregnancy_education
+How does the AI interpret scans?,ml_result_explanation
+What is preeclampsia?,general_pregnancy_education
+What should I do with the AI analysis?,ml_result_explanation
+How to count baby movements?,general_pregnancy_education
+Can the AI's result be wrong?,ml_result_explanation
+Pregnancy and dental care?,general_pregnancy_education
+What do the percentages in the result mean?,ml_result_explanation
+Best sleeping positions?,general_pregnancy_education
+How to make sense of the AI's findings?,ml_result_explanation
+What is a birth plan?,general_pregnancy_education
+What is the AI's confidence in this prediction?,ml_result_explanation
+Swimming during pregnancy?,general_pregnancy_education
+Can you explain the prediction model's output?,ml_result_explanation
+Signs of preterm labor?,general_pregnancy_education
+What does the AI say about my ultrasound?,ml_result_explanation
+How to deal with back pain?,general_pregnancy_education
+How was this prediction generated?,ml_result_explanation
+Pregnancy nutrition guide?,general_pregnancy_education
+What do the technical terms in the result mean?,ml_result_explanation
+Can I have seafood?,general_pregnancy_education
+Is the AI's analysis trustworthy?,ml_result_explanation
+What is lightening in pregnancy?,general_pregnancy_education
+Help! What does this AI result mean for my baby?,ml_result_explanation
+How to boost energy levels?,general_pregnancy_education
+Explain the scan prediction in simple terms.,ml_result_explanation
+Pregnancy and COVID vaccine?,general_pregnancy_education
+What does the machine learning model indicate?,ml_result_explanation
+What is a doula?,general_pregnancy_education
+How to interpret the AI's confidence interval?,ml_result_explanation
+Braxton Hicks contractions?,general_pregnancy_education
+What does 'normal variant' mean in the AI report?,ml_result_explanation
+Can I use a heating pad?,general_pregnancy_education
+Can you decipher the AI's medical jargon?,ml_result_explanation
+How to prepare for breastfeeding?,general_pregnancy_education
+What is the prediction accuracy?,ml_result_explanation
+What is placenta previa?,general_pregnancy_education
+What does the AI's 'uncertainty' field mean?,ml_result_explanation
+Is it normal to feel dizzy?,general_pregnancy_education
+How does the AI differentiate between conditions?,ml_result_explanation
+Pregnancy and sex?,general_pregnancy_education
+What do I do with an ambiguous AI result?,ml_result_explanation
+How to track pregnancy weeks?,general_pregnancy_education
+Explain the predictive analytics behind my scan.,ml_result_explanation
+What is a nuchal translucency scan?,general_pregnancy_education
+What factors affect the AI's confidence score?,ml_result_explanation
+Can I take hot baths?,general_pregnancy_education
+How to verify the AI's prediction?,ml_result_explanation
+What is a biophysical profile?,general_pregnancy_education
+What does the AI's 'recommendation' section mean?,ml_result_explanation
+How to relieve swollen feet?,general_pregnancy_education
+Can the AI's analysis change over time?,ml_result_explanation
+Pregnancy and thyroid issues?,general_pregnancy_education
+What is the basis of the AI's conclusion?,ml_result_explanation
+What is a mucus plug?,general_pregnancy_education
+How to read the probability distribution in results?,ml_result_explanation
+Can I fly in my third trimester?,general_pregnancy_education
+What does 'ground truth' mean in the AI context?,ml_result_explanation
+What is Group B strep?,general_pregnancy_education
+How does the AI handle rare conditions?,ml_result_explanation
+How to manage heartburn?,general_pregnancy_education
+Can you explain the false negative rate of the AI?,ml_result_explanation
+What is a fetal doppler?,general_pregnancy_education
+What does 'model inference' mean in my report?,ml_result_explanation
+Pregnancy and varicose veins?,general_pregnancy_education
+How to contextualize the AI's prediction with my history?,ml_result_explanation
+What is a non-stress test?,general_pregnancy_education
+What is the AI's training data for this prediction?,ml_result_explanation
+Can I lift heavy objects?,general_pregnancy_education
+How does image quality affect the AI's analysis?,ml_result_explanation
+What is a pregnancy glucose test?,general_pregnancy_education
+What does 'predictive value' mean in the results?,ml_result_explanation
+How to bond with baby before birth?,general_pregnancy_education
+Can the AI's result be overridden by a doctor?,ml_result_explanation
+What is a cerclage?,general_pregnancy_education
+What does 'algorithmic bias' mean for my results?,ml_result_explanation
+Pregnancy and migraines?,general_pregnancy_education
+How to get a second opinion from the AI?,ml_result_explanation
+What is a pregnancy support belt?,general_pregnancy_education
+What does the AI consider a 'normal' range?,ml_result_explanation
+Can I use essential oils?,general_pregnancy_education
+How does the AI account for measurement errors?,ml_result_explanation
+What is a Tdap vaccine during pregnancy?,general_pregnancy_education
+What is the AI's sensitivity and specificity?,ml_result_explanation
+How to cope with anxiety?,general_pregnancy_education
+Can the AI's prediction be exported for my doctor?,ml_result_explanation
+What is a fetal echocardiogram?,general_pregnancy_education
+What does 'deep learning' mean in my scan analysis?,ml_result_explanation
+Pregnancy and carpal tunnel?,general_pregnancy_education
+How to compare AI results from different scans?,ml_result_explanation
+What is a birth center?,general_pregnancy_education
+What does the AI's 'version' number indicate?,ml_result_explanation
+Can I go to the dentist?,general_pregnancy_education
+How to understand the AI's feature importance list?,ml_result_explanation
+What is a postpartum plan?,general_pregnancy_education
+What does 'calibrated' mean for the AI's scores?,ml_result_explanation
+How to deal with constipation?,general_pregnancy_education
+Can the AI analyze 3D/4D scans?,ml_result_explanation
+What is a pregnancy massage?,general_pregnancy_education
+What does the AI's 'threshold' setting mean?,ml_result_explanation
+Pregnancy and anemia?,general_pregnancy_education
+How to interpret the AI's uncertainty visualization?,ml_result_explanation
+When does the baby's brain start developing?,brain_development
+"I have a sharp pain, what medicine should I take?",medical_advice_request
+What is the cerebellum responsible for in the fetus?,brain_development
+Can you diagnose this rash for me?,medical_advice_request
+How does the brain grow in the second trimester?,brain_development
+Should I take aspirin for my headache?,medical_advice_request
+What is a normal head circumference at 20 weeks?,brain_development
+"I'm bleeding, what should I do?",medical_advice_request
+When do brain waves begin?,brain_development
+Can you tell me if this is a miscarriage?,medical_advice_request
+What affects fetal brain development?,brain_development
+What's the best painkiller for pregnancy back pain?,medical_advice_request
+How to support baby brain growth through diet?,brain_development
+Do I need antibiotics for this infection?,medical_advice_request
+What is neural tube development?,brain_development
+Can you prescribe something for morning sickness?,medical_advice_request
+When is the brain fully formed?,brain_development
+"I have a fever, what medication is safe?",medical_advice_request
+What does head circumference indicate?,brain_development
+Is it safe to take this herbal supplement?,medical_advice_request
+Can music help fetal brain development?,brain_development
+Should I go to the ER for cramping?,medical_advice_request
+What is a fetal brain anomaly?,brain_development
+Can you check if my symptoms are serious?,medical_advice_request
+How does alcohol affect the developing brain?,brain_development
+What dosage of Tylenol is safe?,medical_advice_request
+When does the cerebellum develop?,brain_development
+"I think I have preeclampsia, what do I take?",medical_advice_request
+What is ventriculomegaly?,brain_development
+Can you give medical advice for swelling?,medical_advice_request
+How to measure head circumference on ultrasound?,brain_development
+What should I do for severe dizziness?,medical_advice_request
+What nutrients are critical for brain development?,brain_development
+Can you diagnose gestational diabetes?,medical_advice_request
+When do brain hemispheres form?,brain_development
+Is this contraction pattern normal?,medical_advice_request
+What is a neural tube defect?,brain_development
+What medication can I take for allergies?,medical_advice_request
+How does stress affect fetal brain?,brain_development
+Can you recommend treatment for UTI?,medical_advice_request
+What is the role of the corpus callosum?,brain_development
+Should I be worried about this pain?,medical_advice_request
+When does myelination begin?,brain_development
+Can you tell me what this lump is?,medical_advice_request
+What is a head circumference percentile?,brain_development
+What over-the-counter meds are safe?,medical_advice_request
+How do genes influence brain development?,brain_development
+"I have diarrhea, what medicine can I take?",medical_advice_request
+What is fetal brain plasticity?,brain_development
+Can you advise on this breathing difficulty?,medical_advice_request
+When do senses develop in the brain?,brain_development
+What's the treatment for heartburn?,medical_advice_request
+What is microcephaly?,brain_development
+Can you interpret these lab results?,medical_advice_request
+How does smoking affect fetal brain?,brain_development
+Should I take iron supplements?,medical_advice_request
+What is a fetal MRI for the brain?,brain_development
+"I have a cough, what's safe to take?",medical_advice_request
+When do brainstem functions develop?,brain_development
+Can you recommend a sleep aid?,medical_advice_request
+What is a normal cerebellum measurement?,brain_development
+What should I do for vaginal itching?,medical_advice_request
+How does diabetes impact brain development?,brain_development
+Can you diagnose Braxton Hicks vs real labor?,medical_advice_request
+What is a fetal neurosonogram?,brain_development
+"I have high blood pressure, what meds are okay?",medical_advice_request
+When does the cerebral cortex form?,brain_development
+Can you tell if this is a blood clot?,medical_advice_request
+What is DHA's role in brain development?,brain_development
+What's the best antacid during pregnancy?,medical_advice_request
+When do neurons start firing?,brain_development
+Can you prescribe something for anxiety?,medical_advice_request
+What is holoprosencephaly?,brain_development
+"I have numbness, is that normal?",medical_advice_request
+How does folate prevent brain defects?,brain_development
+Can you recommend a laxative?,medical_advice_request
+What is a cephalic index?,brain_development
+Should I take this prescription?,medical_advice_request
+When does the blood-brain barrier form?,brain_development
+Can you diagnose carpal tunnel?,medical_advice_request
+What is ventriculomegaly vs hydrocephalus?,brain_development
+What can I take for a migraine?,medical_advice_request
+How does thyroid function affect brain development?,brain_development
+Can you check if this mole is dangerous?,medical_advice_request
+What is a normal head circumference growth rate?,brain_development
+"I have a yeast infection, what medication?",medical_advice_request
+When do brain gyri and sulci develop?,brain_development
+Can you advise on this vision change?,medical_advice_request
+What is lissencephaly?,brain_development
+Should I take steroids for preterm labor?,medical_advice_request
+How does hypoxia affect fetal brain?,brain_development
+Can you diagnose appendicitis in pregnancy?,medical_advice_request
+What is a Dandy-Walker malformation?,brain_development
+What's safe for constipation medicine?,medical_advice_request
+When does the hippocampus develop?,brain_development
+Can you interpret this ultrasound report?,medical_advice_request
+What is agenesis of the corpus callosum?,brain_development
+"I have a cold, what can I take?",medical_advice_request
+How does maternal depression affect fetal brain?,brain_development
+Can you recommend a prenatal vitamin brand?,medical_advice_request
+What is a normal cisterna magna measurement?,brain_development
+Should I take progesterone supplements?,medical_advice_request
+When do synaptic connections peak?,brain_development
+Can you diagnose gallbladder issues?,medical_advice_request
+What is schizencephaly?,brain_development
+What can I take for nausea?,medical_advice_request
+How does obesity affect fetal brain development?,brain_development
+Can you check if this is preterm labor?,medical_advice_request
+What is a normal transcerebellar diameter?,brain_development
+"I have sciatica, what treatment?",medical_advice_request
+When does the fetal brain respond to sound?,brain_development
+Can you diagnose hyperemesis gravidarum?,medical_advice_request
+What is polymicrogyria?,brain_development
+What's safe for hemorrhoids?,medical_advice_request
+How does Zika virus affect brain development?,brain_development
+Can you recommend a diuretic?,medical_advice_request
+What is a normal BPD measurement?,brain_development
+Should I take insulin for gestational diabetes?,medical_advice_request
+When does the prefrontal cortex develop?,brain_development
+Can you diagnose placental abruption?,medical_advice_request
+What is hydranencephaly?,brain_development
+What medication for high cholesterol?,medical_advice_request
+How does alcohol cause FASD brain damage?,brain_development
+Can you tell if this is a uterine rupture?,medical_advice_request
+What is a normal HC/AC ratio?,brain_development
+"I have insomnia, what sleep meds are safe?",medical_advice_request
+When does the visual cortex develop?,brain_development
+Can you diagnose ectopic pregnancy?,medical_advice_request
+What is porencephaly?,brain_development
+What can I take for asthma?,medical_advice_request
+How does cocaine affect fetal brain?,brain_development
+Should I take blood thinners?,medical_advice_request
+What is a normal fetal brain weight?,brain_development
+Can you diagnose mastitis?,medical_advice_request
+When does the brain control breathing movements?,brain_development
+What's safe for toothache?,medical_advice_request
+What is encephalocele?,brain_development
+Can you recommend a blood pressure med?,medical_advice_request
+How does lead exposure affect brain development?,brain_development
+Should I take antidepressants?,medical_advice_request
+What is a normal head shape?,brain_development
+Can you diagnose cholestasis?,medical_advice_request
+When does the brain regulate body temperature?,brain_development
+What can I take for a sinus infection?,medical_advice_request
+Where do I click to upload my scan?,image_upload_help
+I'm bleeding heavily help me.,emergency_query
+How do I upload my ultrasound picture?,image_upload_help
+Baby hasn't moved in 12 hours!,emergency_query
+Can't find the upload button.,image_upload_help
+Severe abdominal pain and contractions.,emergency_query
+What file types can I upload?,image_upload_help
+My water broke and it's green!,emergency_query
+Upload not working.,image_upload_help
+"I can't breathe, chest is tight.",emergency_query
+Step by step guide to upload?,image_upload_help
+"Uncontrollable bleeding, please help.",emergency_query
+Where is the scan upload feature?,image_upload_help
+High fever with shaking chills.,emergency_query
+How to upload from my phone gallery?,image_upload_help
+I think I'm having a seizure.,emergency_query
+File too large error.,image_upload_help
+"Sharp pain in my chest, radiating to arm.",emergency_query
+Do you accept video uploads?,image_upload_help
+"Vision blurred, seeing spots.",emergency_query
+Help uploading pic.,image_upload_help
+"I fell down the stairs, baby not moving.",emergency_query
+The app crashed when I tried to upload.,image_upload_help
+Bleeding through a pad in an hour.,emergency_query
+Which section for ultrasound upload?,image_upload_help
+"Severe headache, can't tolerate light.",emergency_query
+How to retake the photo before upload?,image_upload_help
+I feel like I'm going to pass out.,emergency_query
+Upload progress bar stuck.,image_upload_help
+Intense pain in upper right belly.,emergency_query
+Can I upload a 3D scan?,image_upload_help
+I've been vomiting for 24 hours straight.,emergency_query
+Pic upload guide plz.,image_upload_help
+Sudden severe swelling in my face and hands.,emergency_query
+Network error during upload.,image_upload_help
+I think my blood pressure is dangerously high.,emergency_query
+Where to upload Doppler scan?,image_upload_help
+No fetal movement after car accident.,emergency_query
+How to upload multiple images?,image_upload_help
+Burning pain when urinating with fever.,emergency_query
+Upload button greyed out.,image_upload_help
+I'm seeing bright flashes of light.,emergency_query
+Is there a size limit for uploads?,image_upload_help
+"Constant, severe back pain with pressure.",emergency_query
+Tutorial for uploading?,image_upload_help
+I have a severe allergic reaction.,emergency_query
+Can't select the file to upload.,image_upload_help
+Heavy bleeding with clots and cramping.,emergency_query
+How do I know upload was successful?,image_upload_help
+I can't feel the baby at all.,emergency_query
+Upload from cloud storage?,image_upload_help
+Sudden onset of shortness of breath.,emergency_query
+What's the best angle for the scan photo?,image_upload_help
+I have a severe cut that won't stop bleeding.,emergency_query
+App says 'upload failed' every time.,image_upload_help
+I'm having more than 5 contractions an hour.,emergency_query
+Where do I upload for the AI to see?,image_upload_help
+"Extreme dizziness, room is spinning.",emergency_query
+How to upload a clear picture?,image_upload_help
+I think I'm leaking amniotic fluid constantly.,emergency_query
+Can I upload a screenshot of my scan?,image_upload_help
+Chest pain and heart racing.,emergency_query
+Upload help needed.,image_upload_help
+"Severe leg pain and swelling, can't walk.",emergency_query
+Which folder should my scan be in?,image_upload_help
+I'm having a mental health crisis.,emergency_query
+The image is blurry after upload.,image_upload_help
+High fever with a rash.,emergency_query
+How to use camera in app for upload?,image_upload_help
+Unbearable headache with stiff neck.,emergency_query
+Does it upload automatically?,image_upload_help
+I fainted and just woke up.,emergency_query
+Where's the 'choose file' option?,image_upload_help
+"I've been in a fight, hit in the belly.",emergency_query
+Upload takes forever.,image_upload_help
+I have a history of clots and have new chest pain.,emergency_query
+Help me upload pls.,image_upload_help
+I feel something bulging into my vagina.,emergency_query
+What if my scan is a PDF?,image_upload_help
+I'm alone and the pain is getting worse.,emergency_query
+How to upload for a second opinion?,image_upload_help
+I think I'm going into early labor at 24 weeks.,emergency_query
+The upload icon is missing.,image_upload_help
+Severe itching all over my body.,emergency_query
+Can I edit the image before uploading?,image_upload_help
+I'm feeling suicidal.,emergency_query
+Where to upload in the new app version?,image_upload_help
+I have diabetes and my sugars are dangerously high.,emergency_query
+Upload failed try again later.,image_upload_help
+I've taken too much medication by accident.,emergency_query
+How to upload a video scan file?,image_upload_help
+I have severe abdominal trauma.,emergency_query
+The app won't access my photos.,image_upload_help
+I'm having a panic attack and can't calm down.,emergency_query
+Upload from email attachment?,image_upload_help
+I think my water broke but I'm only 30 weeks.,emergency_query
+What does the upload symbol look like?,image_upload_help
+Excruciating pain when breathing.,emergency_query
+My upload keeps getting interrupted.,image_upload_help
+"I see dark red bleeding, not just spotting.",emergency_query
+Where is the help section for uploading?,image_upload_help
+I have a seizure disorder and just had an aura.,emergency_query
+How to compress image for upload?,image_upload_help
+I'm allergic to penicillin and took it by mistake.,emergency_query
+Upload not starting.,image_upload_help
+I feel the baby's cord prolapsing.,emergency_query
+Can I upload a scan from my computer?,image_upload_help
+"I'm having violent, uncontrollable shakes.",emergency_query
+The upload page is blank.,image_upload_help
+I have a history of ectopic pregnancy and have sharp pain.,emergency_query
+How long does upload processing take?,image_upload_help
+I'm bleeding and I have a positive blood type.,emergency_query
+Upload from social media?,image_upload_help
+I think I'm having a stroke.,emergency_query
+My scan image is sideways after upload.,image_upload_help
+I was in a minor car crash and now have pain.,emergency_query
+What internet speed do I need to upload?,image_upload_help
+I'm feeling extreme pressure in my pelvis.,emergency_query
+Upload button not responding.,image_upload_help
+I have a fever and my baby is moving less.,emergency_query
+How to upload for my doctor to see?,image_upload_help
+I'm alone and think I need an ambulance.,emergency_query
+The upload link is broken.,image_upload_help
+I have a severe asthma attack and my inhaler isn't working.,emergency_query
+Can I upload without an account?,image_upload_help
+I'm hemorrhaging.,emergency_query
+Where are my uploaded images stored?,image_upload_help
+I have a knife wound to the abdomen.,emergency_query
+How to delete an uploaded image?,image_upload_help
+I'm in preterm labor and live far from hospital.,emergency_query
+Upload confirmation message?,image_upload_help
+I have a severe infection and can't keep water down.,emergency_query
+Can I upload a scan from an external drive?,image_upload_help
+I think my placenta is abrupting.,emergency_query
+The upload feature is confusing.,image_upload_help
+I'm having twins and one stopped moving.,emergency_query
+How to get help with upload problems?,image_upload_help
+I'm being physically abused.,emergency_query
+Upload from a shared album?,image_upload_help
+I have a severe burn.,emergency_query
+What's the maximum number of uploads?,image_upload_help
+I'm having a mental breakdown.,emergency_query
+Upload not showing in my history.,image_upload_help
+I'm having anaphylaxis.,emergency_query
+Hi are you a robot?,small_talk
+Hello!,small_talk
+How are you today?,small_talk
+Good morning!,small_talk
+What's up?,small_talk
+Hey there,small_talk
+Howdy!,small_talk
+Greetings,small_talk
+Yo,small_talk
+Sup?,small_talk
+"Hello, how is your day?",small_talk
+Good afternoon,small_talk
+Evening,small_talk
+Hi there!,small_talk
+"Hey, what's new?",small_talk
+How's it going?,small_talk
+What's happening?,small_talk
+Long time no chat,small_talk
+Nice to meet you,small_talk
+Pleasure to talk to you,small_talk
+Hiiii,small_talk
+Hellooooo,small_talk
+Hey you,small_talk
+What's good?,small_talk
+How's your day treating you?,small_talk
+Hope you're well,small_talk
+Good to see you,small_talk
+Nice weather today,small_talk
+How's life?,small_talk
+What's cooking?,small_talk
+Hey buddy,small_talk
+Hello friend,small_talk
+Hiya!,small_talk
+Wassup?,small_talk
+How do you do?,small_talk
+Good to hear from you,small_talk
+"Hey, long time!",small_talk
+How have you been?,small_talk
+What's the latest?,small_talk
+Cheers,small_talk
+Take care,small_talk
+Bye!,small_talk
+Goodbye,small_talk
+See you later,small_talk
+Catch you later,small_talk
+Talk to you soon,small_talk
+Have a good one,small_talk
+Farewell,small_talk
+Later!,small_talk
+Peace out,small_talk
+Gotta go,small_talk
+TTYL,small_talk
+BRB,small_talk
+Be right back,small_talk
+Good night,small_talk
+Sweet dreams,small_talk
+Sleep well,small_talk
+Have a nice day,small_talk
+Enjoy your day,small_talk
+Take it easy,small_talk
+Stay safe,small_talk
+All the best,small_talk
+Best regards,small_talk
+Thank you,small_talk
+Thanks!,small_talk
+Thanks a lot,small_talk
+Appreciate it,small_talk
+You're awesome,small_talk
+Great job,small_talk
+Well done,small_talk
+Cool,small_talk
+Awesome,small_talk
+Nice,small_talk
+Great,small_talk
+Fantastic,small_talk
+Amazing,small_talk
+Wow,small_talk
+Oh really?,small_talk
+That's interesting,small_talk
+Tell me more,small_talk
+I see,small_talk
+Okay,small_talk
+Alright,small_talk
+Sure,small_talk
+Absolutely,small_talk
+Definitely,small_talk
+Maybe,small_talk
+Perhaps,small_talk
+I don't know,small_talk
+No idea,small_talk
+Just checking in,small_talk
+What are you up to?,small_talk
+How's your week?,small_talk
+Any plans for the weekend?,small_talk
+How's the family?,small_talk
+What do you like to do for fun?,small_talk
+Do you like movies?,small_talk
+What's your favorite food?,small_talk
+How's work?,small_talk
+Having a good week?,small_talk
+What's on your mind?,small_talk
+Just wanted to say hi,small_talk
+Thinking of you,small_talk
+Sending good vibes,small_talk
+Hope you're having a great day,small_talk
+It's a beautiful day,small_talk
+Can't complain,small_talk
+Same as usual,small_talk
+Not much,small_talk
+Nothing much,small_talk
+Just chilling,small_talk
+Hanging in there,small_talk
+Keeping busy,small_talk
+Living the dream,small_talk
+One day at a time,small_talk
+It is what it is,small_talk
+Such is life,small_talk
+Oh well,small_talk
+Anyway,small_talk
+So...,small_talk
+Well then,small_talk
+I guess that's it,small_talk
+That's all for now,small_talk
+Signing off,small_talk
+Over and out,small_talk
+Until next time,small_talk
+Adios,small_talk
+Ciao,small_talk
+Au revoir,small_talk
+Sayonara,small_talk
+Good bye for now,small_talk
+See ya,small_talk
+Later gator,small_talk
+Smell you later,small_talk
+Have a good one,small_talk
+You too,small_talk
+Same to you,small_talk
+Likewise,small_talk
+Ditto,small_talk
+Back at you,small_talk
+Right back atcha,small_talk
+No problem,small_talk
+No worries,small_talk
+Don't mention it,small_talk
+My pleasure,small_talk
+Happy to help,small_talk
+Anytime,small_talk
+Sure thing,small_talk
+You bet,small_talk
+Of course,small_talk
+Certainly,small_talk
+Indeed,small_talk
+Yep,small_talk
+Yup,small_talk
+Yeah,small_talk
+Nah,small_talk
+Nope,small_talk
+Not really,small_talk
+I think so,small_talk
+I suppose,small_talk
+If you say so,small_talk
+Whatever,small_talk
+Okay then,small_talk
+Alrighty,small_talk
+Roger that,small_talk
+Copy that,small_talk
+10-4,small_talk
+Affirmative,small_talk
+Negative,small_talk
+Maybe later,small_talk
+Some other time,small_talk
+Not now,small_talk
+I'm busy,small_talk
+Can't talk now,small_talk
+Talk later,small_talk
+Catch you on the flip side,small_talk
+I'm out,small_talk
+Peace,small_talk
+I'm done,small_talk
+That's it,small_talk
+End of conversation,small_talk
+Good chatting,small_talk
+Nice talking to you,small_talk
+Great talking with you,small_talk
+Enjoyed our chat,small_talk
+Till we meet again,small_talk
+See you around,small_talk
+Be well,small_talk
+Take care of yourself,small_talk
+Look after yourself,small_talk
+God bless,small_talk
+Bless you,small_talk
+Good luck,small_talk
+Break a leg,small_talk
+Fingers crossed,small_talk
+Knock on wood,small_talk
+Touch wood,small_talk
+Fare thee well,small_talk
+So long,small_talk
+Hasta la vista,small_talk
+Hasta luego,small_talk
+Bon voyage,small_talk
+Safe travels,small_talk
+Happy trails,small_talk
+Keep in touch,small_talk
+Don't be a stranger,small_talk
+Write soon,small_talk
+Call me,small_talk
+Text me,small_talk
+Let's keep in contact,small_talk
+I'll be in touch,small_talk
+You know it,small_talk
+I hear you,small_talk
+I feel you,small_talk
+Tell me about it,small_talk
+You don't say,small_talk
+Is that so?,small_talk
+No way,small_talk
+You're kidding,small_talk
+Get out of here,small_talk
+Shut up,small_talk
+Stop it,small_talk
+Go on,small_talk
+Continue,small_talk
+And then?,small_talk
+What next?,small_talk
+What else?,small_talk
+So what?,small_talk
+Who cares?,small_talk
+Whatever you say,small_talk
+As you wish,small_talk
+Your call,small_talk
+Up to you,small_talk
+I don't care,small_talk
+I'm indifferent,small_talk
+It's all good,small_talk
+It's all good in the hood,small_talk
+Life is good,small_talk
+Living the life,small_talk
+Just living,small_talk
+Surviving,small_talk
+Getting by,small_talk
+Hanging on,small_talk
+Struggling,small_talk
+It's tough,small_talk
+It's hard,small_talk
+It's a struggle,small_talk
+Such a drag,small_talk
+Boring,small_talk
+I'm bored,small_talk
+This is boring,small_talk
+Exciting,small_talk
+Thrilling,small_talk
+Fun,small_talk
+This is fun,small_talk
+Having fun,small_talk
+Enjoying myself,small_talk
+Loving it,small_talk
+Hating it,small_talk
+Not enjoying this,small_talk
+Can we change the subject?,small_talk
+Let's talk about something else,small_talk
+Enough about that,small_talk
+Moving on,small_talk
+"Anyway, as I was saying",small_talk
+Back to the topic,small_talk
+Where were we?,small_talk
+I lost my train of thought,small_talk
+What was I saying?,small_talk
+Never mind,small_talk
+Forget it,small_talk
+Don't worry about it,small_talk
+It's nothing,small_talk
+It's fine,small_talk
+All good,small_talk
+No big deal,small_talk
+Not a problem,small_talk
+It's okay,small_talk
+I'm okay,small_talk
+You okay?,small_talk
+Everything okay?,small_talk
+Is everything alright?,small_talk
+What's wrong?,small_talk
+Why so serious?,small_talk
+Lighten up,small_talk
+Cheer up,small_talk
+Smile,small_talk
+Be happy,small_talk
+Don't be sad,small_talk
+It'll be okay,small_talk
+Things will get better,small_talk
+This too shall pass,small_talk
+Keep your chin up,small_talk
+Stay positive,small_talk
+Think positive,small_talk
+Look on the bright side,small_talk
+Every cloud has a silver lining,small_talk
+It's not the end of the world,small_talk
+There's always tomorrow,small_talk
+Tomorrow is another day,small_talk
+Today is a new day,small_talk
+Carpe diem,small_talk
+Seize the day,small_talk
+Make the most of it,small_talk
+Enjoy the moment,small_talk
+Live in the moment,small_talk
+Be present,small_talk
+Mindfulness,small_talk
+Just breathe,small_talk
+Take a deep breath,small_talk
