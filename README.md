@@ -1,6 +1,8 @@
 # PregnancyAI
 
-PregnancyAI is a FastAPI and React application for fetal brain ultrasound workflows. It combines user authentication, scan upload handling, ultrasound classification hooks, Grad-CAM style result visualization, and a pregnancy education chatbot.
+PregnancyAI is a FastAPI and React application for pregnancy education and fetal scan record workflows. It combines user authentication, scan upload history, role-aware administration, and an AI-assisted pregnancy education chatbot.
+
+ML scan analysis is disabled by default in this public repository so the app can run without model weights or research artifacts.
 
 ## Features
 
@@ -8,7 +10,8 @@ PregnancyAI is a FastAPI and React application for fetal brain ultrasound workfl
 - React/Vite frontend
 - JWT-based authentication and role-aware access
 - Upload and scan history workflow
-- Optional fetal ultrasound model integration through `ml_work/` when enabled locally
+- ML scan endpoint disabled by default with an explicit `503` response
+- Optional local-only ML integration when model artifacts are managed outside Git
 - Intent-aware chatbot with OpenRouter/Gemini-compatible configuration
 - Alembic database migrations
 - Pytest coverage for core backend API contracts
@@ -16,18 +19,16 @@ PregnancyAI is a FastAPI and React application for fetal brain ultrasound workfl
 ## Repository Layout
 
 ```text
-backend/          FastAPI app, database models, chatbot, ML integration, tests
+backend/          FastAPI app, database models, chatbot, API routes, tests
 frontend/         React/Vite client
-ml_work/          Local notebooks and optional ML artifacts
 design-previews/  Static design reference files
-docs/             Project documentation
 ```
 
 ## What Is Not Committed
 
-This repository intentionally excludes local secrets, dependency folders, build outputs, uploads, generated scan results, and large model artifacts. ML scan analysis is disabled by default so the app can run without model weights.
+This repository intentionally excludes local secrets, dependency folders, build outputs, uploads, generated scan results, notebooks, and large model artifacts. ML scan analysis is disabled by default so the app can run without model weights.
 
-To enable ML locally, set `ENABLE_ML_ANALYSIS=true` and provide expected local ML files such as:
+To enable ML locally, set `ENABLE_ML_ANALYSIS=true` and provide expected local ML files outside Git, such as:
 
 ```text
 ml_work/module_a_3class_leakage_checked.pth
@@ -40,7 +41,7 @@ The intent classifier can also load an optional trained model from:
 backend/data/intent_training/trained_model/
 ```
 
-Large files such as `.pth`, `.pt`, `.bin`, and `.safetensors` are ignored.
+Large files such as `.pth`, `.pt`, `.bin`, `.safetensors`, notebooks, spreadsheets, and pickle artifacts are ignored.
 
 Install optional ML dependencies only when enabling scan analysis:
 
@@ -136,12 +137,11 @@ npm run build
 
 ## Publishing Checklist
 
+This repo was prepared on the clean branch `publish-clean`. Push only that branch to GitHub:
+
 ```bash
-git status
-git diff --cached
-git add README.md .gitignore backend/requirements.txt backend/.env.example
-git commit -m "Prepare repository for GitHub"
-git branch -M main
 git remote add origin <your-github-repo-url>
-git push -u origin main
+git push -u origin publish-clean:main
 ```
+
+Do not run `git push --all`; older local branches contain large ML history that should not be published.
