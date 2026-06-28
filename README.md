@@ -131,21 +131,4 @@ cd frontend
 npm run build
 ```
 
-## Security Notes
 
-- Do not commit `backend/.env` or any `.env.*` file containing real credentials.
-- Do not commit model weights, generated uploads, scan results, local databases, logs, or dependency folders.
-- Keep `ENABLE_ML_ANALYSIS=false` for public/demo deployments unless model artifacts are managed separately.
-- Rotate any API keys that were ever committed before publishing the repository.
-- Review `git status` and `git diff --cached` before pushing.
-
-## Publishing Checklist
-
-This repo was prepared on the clean branch `publish-clean`. Push only that branch to GitHub:
-
-```bash
-git remote add origin <your-github-repo-url>
-git push -u origin publish-clean:main
-```
-
-Do not run `git push --all`; older local branches contain large ML history that should not be published.
