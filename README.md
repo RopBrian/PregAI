@@ -28,6 +28,8 @@ frontend/         React/Vite client
 design-previews/  Static design reference files
 ```
 
+The Python dependency manifests are located in the backend folder: `backend/requirements.txt` and `backend/requirements-ml.txt`.
+
 ## What Is Not Committed
 
 This repository intentionally excludes local secrets, dependency folders, build outputs, uploads, generated scan results, notebooks, and large model artifacts. ML scan analysis is disabled by default so the app can run without model weights.
