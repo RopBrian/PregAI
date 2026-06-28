@@ -4,6 +4,10 @@ PregnancyAI is a FastAPI and React application for pregnancy education and fetal
 
 ML scan analysis is disabled by default in this public repository so the app can run without model weights or research artifacts.
 
+## Note on the ML Work
+
+A dedicated ML development workspace is present locally for research and validation purposes, including model-related assets and experimental notebooks. That work was intentionally not included in the public repository history or pushed to the remote repository due to privacy considerations, file size, and the need to keep the shared release lightweight and appropriate for general audiences. Visitors should view this repository as the application layer and deployment-ready codebase, with the ML work available separately for local or restricted use when appropriate.
+
 ## Features
 
 - FastAPI backend with versioned API routes
