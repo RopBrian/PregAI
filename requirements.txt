@@ -1,1 +1,17 @@
--r backend/requirements.txt
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+pydantic
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+email-validator
+loguru
+openai
+pillow
+opencv-python
+numpy
+pytest
+httpx
