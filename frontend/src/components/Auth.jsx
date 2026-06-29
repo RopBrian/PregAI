@@ -64,7 +64,17 @@ const Auth = ({ onAuthSuccess }) => {
         body: body
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+      let data = {};
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(
+          response.ok
+            ? 'Server returned an unexpected response.'
+            : `Server returned ${response.status}: ${responseText.slice(0, 160)}`
+        );
+      }
       
       if (!response.ok) {
         throw new Error(data.detail || 'Authentication failed');

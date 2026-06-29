@@ -67,10 +67,11 @@ def create_app() -> FastAPI:
             content={"detail": "Database error. Please try again later."}
         )
 
-    app.include_router(chat.router, prefix="/api/v1")
-    app.include_router(analysis.router, prefix="/api/v1")
-    app.include_router(auth.router, prefix="/api/v1")
-    app.include_router(admin.router, prefix="/api/v1")
+    for api_prefix in ("/api/v1", "/v1"):
+        app.include_router(chat.router, prefix=api_prefix)
+        app.include_router(analysis.router, prefix=api_prefix)
+        app.include_router(auth.router, prefix=api_prefix)
+        app.include_router(admin.router, prefix=api_prefix)
 
     static_path = os.path.join("backend", "static")
     os.makedirs(static_path, exist_ok=True)
