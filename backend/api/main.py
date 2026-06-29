@@ -12,9 +12,61 @@ import uuid
 from loguru import logger
 
 
+def bootstrap_database() -> None:
+    """Optionally initialize a fresh deployment database."""
+    if not settings.auto_create_tables:
+        return
+
+    from backend.database.database import SessionLocal, engine
+    from backend.database.models import Base
+    from backend.database import crud
+    from backend.api.routes.auth import get_password_hash
+
+    logger.info("AUTO_CREATE_TABLES enabled; ensuring database schema exists.")
+    Base.metadata.create_all(bind=engine)
+
+    if not settings.pregai_admin_password:
+        logger.info("PREGAI_ADMIN_PASSWORD not set; skipping admin bootstrap.")
+        return
+
+    db = SessionLocal()
+    try:
+        admin = crud.get_user_by_username(db, settings.pregai_admin_username)
+        if admin:
+            if admin.role != "system_admin":
+                admin.role = "system_admin"
+                db.commit()
+                logger.info(f"Promoted existing user '{admin.username}' to system_admin.")
+            return
+
+        existing_email = crud.get_user_by_email(db, settings.pregai_admin_email)
+        if existing_email:
+            logger.warning(
+                "PREGAI_ADMIN_EMAIL already exists for another user; skipping admin bootstrap."
+            )
+            return
+
+        crud.create_user(
+            db=db,
+            username=settings.pregai_admin_username,
+            email=settings.pregai_admin_email,
+            password_hash=get_password_hash(settings.pregai_admin_password),
+            role="system_admin",
+            terms_accepted=True,
+        )
+        logger.info(f"Created system_admin user '{settings.pregai_admin_username}'.")
+    finally:
+        db.close()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan events for preloading models and resources"""
+    try:
+        bootstrap_database()
+    except Exception as e:
+        logger.error(f"Database bootstrap failed: {e}")
+
     logger.info("Preloading AI models and orchestrator...")
     try:
         # This triggers IntentClassifier load_model and LLMClient init

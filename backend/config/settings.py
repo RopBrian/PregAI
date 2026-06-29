@@ -28,6 +28,11 @@ class Settings(BaseSettings):
     algorithm: str = Field(default='HS256', validation_alias='ALGORITHM')
     access_token_expire_minutes: int = Field(default=30, validation_alias='ACCESS_TOKEN_EXPIRE_MINUTES')
 
+    auto_create_tables: bool = Field(default=False, validation_alias='AUTO_CREATE_TABLES')
+    pregai_admin_username: str = Field(default='admin', validation_alias='PREGAI_ADMIN_USERNAME')
+    pregai_admin_email: str = Field(default='admin@pregai.com', validation_alias='PREGAI_ADMIN_EMAIL')
+    pregai_admin_password: Optional[str] = Field(default=None, validation_alias='PREGAI_ADMIN_PASSWORD')
+
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'),
         env_file_encoding='utf-8',

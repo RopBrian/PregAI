@@ -12,7 +12,7 @@ email-validator
 loguru
 openai
 pillow
-opencv-python
+opencv-python-headless
 numpy
 pytest
 httpx
