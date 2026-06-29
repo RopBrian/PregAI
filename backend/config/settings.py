@@ -1,6 +1,7 @@
 """Application configuration using Pydantic Settings"""
 import os
 from pydantic import Field
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
@@ -32,6 +33,13 @@ class Settings(BaseSettings):
     pregai_admin_username: str = Field(default='admin', validation_alias='PREGAI_ADMIN_USERNAME')
     pregai_admin_email: str = Field(default='admin@pregai.com', validation_alias='PREGAI_ADMIN_EMAIL')
     pregai_admin_password: Optional[str] = Field(default=None, validation_alias='PREGAI_ADMIN_PASSWORD')
+
+    @field_validator('debug', mode='before')
+    @classmethod
+    def parse_debug(cls, value):
+        if isinstance(value, str) and value.lower() in {'release', 'production', 'prod'}:
+            return False
+        return value
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'),
