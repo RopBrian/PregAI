@@ -3,6 +3,27 @@ import { Mail, Lock, User, ArrowRight, Loader2, AlertCircle, Calendar, Eye, EyeO
 import TermsModal from './TermsModal';
 import './Auth.css';
 
+const formatApiError = (data, fallback = 'Authentication failed') => {
+  const detail = data?.detail ?? data?.message ?? data?.error;
+
+  if (Array.isArray(detail)) {
+    return detail
+      .map((item) => {
+        if (typeof item === 'string') return item;
+        const field = Array.isArray(item?.loc) ? item.loc[item.loc.length - 1] : item?.field;
+        const message = item?.msg || item?.message || JSON.stringify(item);
+        return field ? `${field}: ${message}` : message;
+      })
+      .join(' ');
+  }
+
+  if (detail && typeof detail === 'object') {
+    return detail.msg || detail.message || JSON.stringify(detail);
+  }
+
+  return detail || fallback;
+};
+
 const Auth = ({ onAuthSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
@@ -77,7 +98,7 @@ const Auth = ({ onAuthSuccess }) => {
       }
       
       if (!response.ok) {
-        throw new Error(data.detail || 'Authentication failed');
+        throw new Error(formatApiError(data));
       }
 
       // If registration was successful but didn't return a token (because it returns User model)

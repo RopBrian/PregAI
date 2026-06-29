@@ -52,6 +52,24 @@ def test_register_creates_pregnant_mother_user(client, monkeypatch):
     assert data["terms_accepted"] is True
 
 
+def test_register_rejects_passwords_too_long_for_bcrypt(client, monkeypatch):
+    monkeypatch.setattr(crud, "get_user_by_email", lambda db, email: None)
+    monkeypatch.setattr(crud, "get_user_by_username", lambda db, username: None)
+
+    response = client.post(
+        "/api/v1/auth/register",
+        json={
+            "username": "long_password",
+            "email": "long_password@example.com",
+            "password": "a" * 73,
+            "terms_accepted": True,
+        },
+    )
+
+    assert response.status_code == 400
+    assert "72 bytes" in response.json()["detail"]
+
+
 def test_me_rejects_missing_token(client):
     response = client.get("/api/v1/auth/me")
 

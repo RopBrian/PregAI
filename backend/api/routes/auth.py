@@ -13,11 +13,25 @@ from backend.config.settings import settings
 router = APIRouter(prefix='/auth', tags=['auth'])
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='api/v1/auth/login')
+MAX_BCRYPT_PASSWORD_BYTES = 72
+
+
+def validate_bcrypt_password(password: str) -> None:
+    if len(password.encode('utf-8')) > MAX_BCRYPT_PASSWORD_BYTES:
+        raise HTTPException(
+            status_code=400,
+            detail='Password must be 72 bytes or fewer. Please use a shorter password.'
+        )
+
 
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return pwd_context.verify(plain_password, hashed_password)
+    except ValueError:
+        return False
 
 def get_password_hash(password):
+    validate_bcrypt_password(password)
     return pwd_context.hash(password)
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
