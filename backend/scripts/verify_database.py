@@ -10,10 +10,15 @@ from sqlalchemy import inspect
 
 EXPECTED_TABLES = ['users', 'images', 'predictions', 'conversations', 'system_logs']
 
+def inspection_schema():
+    if database.engine.dialect.name == "postgresql":
+        return "public"
+    return None
+
 def verify_tables():
     print("Checking database tables...")
     inspector = inspect(database.engine)
-    tables = inspector.get_table_names()
+    tables = inspector.get_table_names(schema=inspection_schema())
     missing_tables = []
     
     for table in EXPECTED_TABLES:

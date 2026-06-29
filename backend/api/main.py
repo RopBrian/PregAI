@@ -11,10 +11,17 @@ import os
 import uuid
 from loguru import logger
 
+_database_bootstrapped = False
+
 
 def bootstrap_database() -> None:
     """Optionally initialize a fresh deployment database."""
+    global _database_bootstrapped
+    if _database_bootstrapped:
+        return
+
     if not settings.auto_create_tables:
+        _database_bootstrapped = True
         return
 
     from backend.database.database import SessionLocal, engine
@@ -27,6 +34,7 @@ def bootstrap_database() -> None:
 
     if not settings.pregai_admin_password:
         logger.info("PREGAI_ADMIN_PASSWORD not set; skipping admin bootstrap.")
+        _database_bootstrapped = True
         return
 
     db = SessionLocal()
@@ -37,6 +45,7 @@ def bootstrap_database() -> None:
                 admin.role = "system_admin"
                 db.commit()
                 logger.info(f"Promoted existing user '{admin.username}' to system_admin.")
+            _database_bootstrapped = True
             return
 
         existing_email = crud.get_user_by_email(db, settings.pregai_admin_email)
@@ -44,6 +53,7 @@ def bootstrap_database() -> None:
             logger.warning(
                 "PREGAI_ADMIN_EMAIL already exists for another user; skipping admin bootstrap."
             )
+            _database_bootstrapped = True
             return
 
         crud.create_user(
@@ -55,6 +65,7 @@ def bootstrap_database() -> None:
             terms_accepted=True,
         )
         logger.info(f"Created system_admin user '{settings.pregai_admin_username}'.")
+        _database_bootstrapped = True
     finally:
         db.close()
 
@@ -142,9 +153,30 @@ def create_app() -> FastAPI:
     async def health_check():
         return {"status": "healthy"}
 
+    @app.get("/health/db")
+    async def database_health_check():
+        from sqlalchemy import text
+        from backend.database.database import SessionLocal
+
+        db = SessionLocal()
+        try:
+            db.execute(text("SELECT 1"))
+            return {
+                "status": "healthy",
+                "auto_create_tables": settings.auto_create_tables,
+                "admin_bootstrap_configured": bool(settings.pregai_admin_password),
+            }
+        finally:
+            db.close()
+
     logger.info(f"{settings.app_name} API started successfully")
     return app
 
+
+try:
+    bootstrap_database()
+except Exception as e:
+    logger.error(f"Database bootstrap failed during import: {e}")
 
 app = create_app()
 

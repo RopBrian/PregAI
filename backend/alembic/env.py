@@ -1,6 +1,7 @@
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
+from sqlalchemy import event
 from sqlalchemy import pool
 
 from alembic import context
@@ -66,6 +67,18 @@ def run_migrations_online() -> None:
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
+
+    if settings.database_url.startswith(("postgresql://", "postgresql+psycopg2://")):
+        @event.listens_for(connectable, "connect")
+        def set_search_path(dbapi_connection, _connection_record):
+            previous_autocommit = dbapi_connection.autocommit
+            dbapi_connection.autocommit = True
+            cursor = dbapi_connection.cursor()
+            try:
+                cursor.execute("SET search_path TO public")
+            finally:
+                cursor.close()
+                dbapi_connection.autocommit = previous_autocommit
 
     with connectable.connect() as connection:
         context.configure(
